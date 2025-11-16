@@ -12,6 +12,6 @@ public class AppUser : IdentityUser
     [MaxLength(30)]
     public required string Nickname { get; set; }
     public bool IsDeleted { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; }
 }

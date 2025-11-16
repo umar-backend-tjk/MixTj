@@ -24,6 +24,8 @@ Log.Logger = new LoggerConfiguration()
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1",new OpenApiInfo());
@@ -63,9 +65,11 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     })
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
+
 builder.Services.AddAutoMapper(typeof(AppProfile));
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddScoped<Seeder>();
 builder.Services.AddAuthentication(config =>
