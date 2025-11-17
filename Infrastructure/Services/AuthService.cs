@@ -6,6 +6,7 @@ using AutoMapper;
 using Domain.DTOs.Auth;
 using Domain.Entities;
 using Domain.Enums;
+using Infrastructure.Caching;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Infrastructure.Responses;
@@ -24,6 +25,7 @@ public class AuthService(
     IMapper mapper,
     IConfiguration configuration) : IAuthService
 {
+    
     public async Task<Response<string>> RegisterUserAsync(RegisterDto registerDto)
     {
         Log.Information("Trying to register user with email {email}", registerDto.Email);

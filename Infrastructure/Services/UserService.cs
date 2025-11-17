@@ -4,12 +4,14 @@ using AutoMapper;
 using Domain.DTOs.User;
 using Domain.Entities;
 using Domain.Filters;
+using Infrastructure.Caching;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Infrastructure.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Serilog;
 
@@ -19,19 +21,39 @@ public class UserService(
     DataContext context,
     UserManager<AppUser> userManager,
     IMapper mapper,
-    IHttpContextAccessor accessor) : IUserService
+    IHttpContextAccessor accessor,
+    ICacheService cacheService) : IUserService
 {
+    
+    private async Task RefreshCacheAsync()
+    {
+        var allUsers = await context.Users.ToListAsync();
+        await cacheService.AddAsync(CacheKeys.Users, allUsers, DateTimeOffset.Now.AddMinutes(5));
+        Log.Information("Refreshed cache with key {k}", CacheKeys.Users);
+    }
+    
     public async Task<PaginationResponse<List<GetUserDto>>> GetAllUsersAsync(UserFilter filter)
     {
         var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "anonymous";
         Log.Information("User {userId} tries to get {pageSize} users", userId, filter.PageSize);
-        var query = context.Users.Where(u => !u.IsDeleted).AsQueryable();
+        
+        var usersInCache = await cacheService.GetAsync<List<AppUser>>(CacheKeys.Users);
+
+        if (usersInCache is null)
+        {
+            usersInCache = await context.Users.Where(u => !u.IsDeleted).ToListAsync();
+
+            await cacheService.AddAsync(CacheKeys.Users, usersInCache, DateTimeOffset.Now.AddMinutes(5));
+        }
+
+        var query = usersInCache.AsQueryable();
 
         if (!string.IsNullOrEmpty(filter.NickName))
-        {
-            query = query.Where(u => u.Nickname.ToLower() == filter.NickName.ToLower());
-        }
+            query = query.Where(n => n.Nickname.Contains(filter.NickName, StringComparison.OrdinalIgnoreCase) && !n.IsDeleted);
         
+        if (!string.IsNullOrEmpty(filter.Email))
+            query = query.Where(n => n.Email!.Contains(filter.Email, StringComparison.OrdinalIgnoreCase) && !n.IsDeleted);
+
         if (filter.Role.HasValue)
         {
             var usersInRole = await userManager.GetUsersInRoleAsync(filter.Role.Value.ToString());
@@ -39,29 +61,17 @@ public class UserService(
             query = query.Where(x => userIds.Contains(x.Id));
         }
 
-        if (!string.IsNullOrEmpty(filter.Email))
-        {
-            query = query.Where(u => u.Email!.ToLower() == filter.Email.ToLower());
-        }
-
-        var totalRecord = await query.CountAsync();
+        var totalCount = query.Count();
         var skip = (filter.PageNumber - 1) * filter.PageSize;
-        var result = await query.Skip(skip).Take(filter.PageSize).ToListAsync();
-        if (!result.Any())
-        {
-            return new PaginationResponse<List<GetUserDto>>(HttpStatusCode.NotFound, "Not found users");
-        }
-        
-        var usersMap = mapper.Map<List<GetUserDto>>(result);
-        foreach (var userDto in usersMap)
-        {
-            var identityUser = await userManager.FindByIdAsync(userDto.Id);
-            var roles = await userManager.GetRolesAsync(identityUser!);
-            userDto.Roles = roles.ToList();
-        }
+        var items = await query
+            .Skip(skip)
+            .Take(filter.PageSize)
+            .ToListAsync();
 
-        Log.Information("Got {count} the users successfully", usersMap.Count);
-        return new PaginationResponse<List<GetUserDto>>(usersMap, totalRecord, filter.PageNumber, filter.PageSize);
+        var mappedList = mapper.Map<List<GetUserDto>>(items);
+
+        Log.Information("Found {count} elements", totalCount);
+        return new PaginationResponse<List<GetUserDto>>(mappedList, totalCount, filter.PageNumber, filter.PageSize);
     }
 
     public async Task<Response<GetUserDto>> GetUserByIdAsync(string id)
@@ -79,6 +89,8 @@ public class UserService(
         var roles = await userManager.GetRolesAsync(user);
         var mappedUser = mapper.Map<GetUserDto>(user);
         mappedUser.Roles = roles.ToList();
+
+        await RefreshCacheAsync();
         
         Log.Information("Got the user with id {id} successfully", id);
         return new Response<GetUserDto>(mappedUser);
@@ -106,6 +118,8 @@ public class UserService(
             return new Response<string>(HttpStatusCode.BadRequest, $"Failed to update the user with id {dto.Id}");
         }
         
+        await RefreshCacheAsync();
+        
         Log.Information("Updated the user with id {id} successfully", dto.Id);
         return new Response<string>(HttpStatusCode.OK, $"Updated the user with id {dto.Id} successfully");
     }
@@ -130,6 +144,8 @@ public class UserService(
             Log.Warning("Failed to update the user with id {id}", id);
             return new Response<string>(HttpStatusCode.BadRequest, $"Failed to update the user with id {userId}");
         } 
+        
+        await RefreshCacheAsync();
         
         Log.Information("Updated the user with id {id} successfully", id);
         return new Response<string>(HttpStatusCode.OK, $"Updated user successfully");

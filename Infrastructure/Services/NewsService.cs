@@ -14,18 +14,22 @@ using Serilog;
 
 namespace Infrastructure.Services;
 
-public class NewsService(DataContext context, IMapper mapper, IHttpContextAccessor accessor, ICacheService cacheService) : INewsService
+public class NewsService
+    (DataContext context, 
+    IMapper mapper, 
+    IHttpContextAccessor accessor, 
+    ICacheService cacheService) : INewsService
 {
     private async Task RefreshCacheAsync()
     {
-        var allNews = await context.News.ToListAsync();
+        var allNews = await context.News.Where(x => !x.IsDeleted).ToListAsync();
         await cacheService.AddAsync(CacheKeys.News, allNews, DateTimeOffset.Now.AddMinutes(5));
         Log.Information("Refreshed cache with key {k}", CacheKeys.News);
     }
     
     public async Task<Response<string>> CreateNewsAsync(CreateNewsDto dto)
     {
-        var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
+        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
         Log.Information("User {userId} tries to create a new news", userId);
         
         var mapped = mapper.Map<News>(dto);
@@ -48,34 +52,53 @@ public class NewsService(DataContext context, IMapper mapper, IHttpContextAccess
 
     public async Task<PaginationResponse<List<GetNewsDto>>> GetAllNewsAsync(NewsFilter filter)
     {
-        var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
+        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
         Log.Information("User {userId} tries to get all the news", userId);
         
         var newsInCache = await cacheService.GetAsync<List<News>>(CacheKeys.News);
 
         if (newsInCache is null)
         {
-            var newsList = await context.News.ToListAsync();
-            
-            var expirationTime = DateTimeOffset.Now.AddMinutes(5);
-            await cacheService.AddAsync(CacheKeys.News, newsList, expirationTime);
-            
-            var mapped = mapper.Map<List<GetNewsDto>>(newsList);
-            return new PaginationResponse<List<GetNewsDto>>(mapped);
+            newsInCache = await context.News
+                .Where(n => !n.IsDeleted)
+                .ToListAsync();
+
+            await cacheService.AddAsync(CacheKeys.News, newsInCache, DateTimeOffset.Now.AddMinutes(5));
         }
 
-        var mappedFromCache = mapper.Map<List<GetNewsDto>>(newsInCache);
+        var query = newsInCache.AsQueryable();
+
+        if (!string.IsNullOrEmpty(filter.AuthorId))
+            query = query.Where(n => n.AuthorId == filter.AuthorId && !n.IsDeleted);
         
-        Log.Information("Found {count} news items", newsInCache.Count);
-        return new PaginationResponse<List<GetNewsDto>>(mappedFromCache);
+        if (!string.IsNullOrEmpty(filter.Title))
+            query = query.Where(n => n.Title == filter.Title && !n.IsDeleted);
+        
+        if (filter.Category.HasValue)
+            query = query.Where(n => n.Category == filter.Category && !n.IsDeleted);
+
+        if (filter.Tags?.Length > 0)
+            query = query.Where(n => n.Tags != null && n.Tags.Any(t => filter.Tags.Contains(t)));
+
+        var totalCount = query.Count();
+        var skip = (filter.PageNumber - 1) * filter.PageSize;
+        var items = await query
+            .Skip(skip)
+            .Take(filter.PageSize)
+            .ToListAsync();
+
+        var mappedList = mapper.Map<List<GetNewsDto>>(items);
+
+        Log.Information("Found {count} elements", totalCount);
+        return new PaginationResponse<List<GetNewsDto>>(mappedList, totalCount, filter.PageNumber, filter.PageSize);
     }
 
     public async Task<Response<GetNewsDto>> GetNewsByIdAsync(Guid id)
     {
-        var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
+        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
         Log.Information("User {userId} tries to get the news with id {newId}", userId, id);
-        
-        var news = await context.News.FindAsync(id);
+
+        var news = await context.News.FirstOrDefaultAsync(n => n.Id == id && !n.IsDeleted);
 
         if (news is null)
         {
@@ -91,10 +114,10 @@ public class NewsService(DataContext context, IMapper mapper, IHttpContextAccess
 
     public async Task<Response<string>> UpdateNewsAsync(UpdateNewsDto dto)
     {
-        var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
+        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
         Log.Information("User {userId} tries to update the news with id {newId}", userId, dto.Id);
         
-        var news = await context.News.FindAsync(dto.Id);
+        var news = await context.News.FirstOrDefaultAsync(n => n.Id == dto.Id && !n.IsDeleted);
 
         if (news is null)
         {
@@ -121,10 +144,10 @@ public class NewsService(DataContext context, IMapper mapper, IHttpContextAccess
 
     public async Task<Response<string>> DeleteNewsAsync(Guid id)
     {
-        var userId = accessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         Log.Information("User {userID} tries to delete the news with id {id}", userId, id);
         
-        var theNews = await context.News.FindAsync(id);
+        var theNews = await context.News.FirstOrDefaultAsync(n => n.Id == id && !n.IsDeleted);
         
         if (theNews is null)
         {
