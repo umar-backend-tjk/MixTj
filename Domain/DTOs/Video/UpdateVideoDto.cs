@@ -1,0 +1,14 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.DTOs.Video;
+
+public class UpdateVideoDto
+{
+    [Required]
+    public Guid Id { get; set; }
+    [Required]
+    [StringLength(50), MinLength(5)]
+    public required string Title { get; set; }
+    [MaxLength(200)]
+    public string Description { get; set; } = string.Empty;
+}
