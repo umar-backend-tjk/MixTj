@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.DTOs.Auth;
+using Domain.DTOs.News;
 using Domain.DTOs.User;
 using Domain.Entities;
 
@@ -12,5 +13,9 @@ public class AppProfile : Profile
         CreateMap<RegisterDto, AppUser>();
         CreateMap<AppUser, GetUserDto>();
         CreateMap<UpdateUserDto, AppUser>();
+
+        CreateMap<CreateNewsDto, News>();
+        CreateMap<UpdateNewsDto, News>();
+        CreateMap<News, GetNewsDto>();
     }
 }

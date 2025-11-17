@@ -1,5 +1,6 @@
 using System.Text;
 using Domain.Entities;
+using Infrastructure.Caching;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Infrastructure.Profiles;
@@ -21,8 +22,15 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
+
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("RedisConnection");
+    options.InstanceName = "Redis cache";
+});
 
 builder.Services.AddHttpContextAccessor();
 
@@ -68,8 +76,10 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 
 builder.Services.AddAutoMapper(typeof(AppProfile));
 
+builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<INewsService, NewsService>();
 
 builder.Services.AddScoped<Seeder>();
 builder.Services.AddAuthentication(config =>

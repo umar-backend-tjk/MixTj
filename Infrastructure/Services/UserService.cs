@@ -75,8 +75,10 @@ public class UserService(
             Log.Warning("Not found the user with id {id}", id);
             return new Response<GetUserDto>(HttpStatusCode.NotFound, $"Not found the user with id {id}");
         }
-        
+
+        var roles = await userManager.GetRolesAsync(user);
         var mappedUser = mapper.Map<GetUserDto>(user);
+        mappedUser.Roles = roles.ToList();
         
         Log.Information("Got the user with id {id} successfully", id);
         return new Response<GetUserDto>(mappedUser);
