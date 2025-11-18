@@ -46,7 +46,7 @@ public class CacheService(IDistributedCache cacher) : ICacheService
         }
     }
 
-    public async Task RemoveAsync<T>(string key, CancellationToken cancellationToken = default)
+    public async Task RemoveAsync(string key, CancellationToken cancellationToken = default)
     {
         try
         {
