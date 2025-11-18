@@ -82,10 +82,10 @@ public class NewsService
 
         var totalCount = query.Count();
         var skip = (filter.PageNumber - 1) * filter.PageSize;
-        var items = await query
+        var items = query
             .Skip(skip)
             .Take(filter.PageSize)
-            .ToListAsync();
+            .ToList();
 
         var mappedList = mapper.Map<List<GetNewsDto>>(items);
 

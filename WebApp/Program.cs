@@ -80,7 +80,7 @@ builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<INewsService, NewsService>();
-
+builder.Services.AddScoped<IVideoService, VideoService>();
 
 builder.Services.AddScoped<IFileStorageService>(
     sp => new FileStorageService(builder.Environment.ContentRootPath));

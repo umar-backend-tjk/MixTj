@@ -14,4 +14,8 @@ public class AppUser : IdentityUser
     public bool IsDeleted { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; }
+    
+    public List<News> NewsList = [];
+    public List<Video> Videos = [];
+    public List<Comment> Comments = [];
 }

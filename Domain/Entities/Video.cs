@@ -6,4 +6,6 @@ public class Video : BaseEntity
     public string Description { get; set; } = string.Empty;
     public required string VideoPath { get; set; }
     public required string AuthorId  { get; set; }
+
+    public List<Comment> Comments = [];
 }
