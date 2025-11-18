@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.DTOs.Auth;
+using Domain.DTOs.Comment;
 using Domain.DTOs.News;
 using Domain.DTOs.User;
 using Domain.DTOs.Video;
@@ -22,5 +23,9 @@ public class AppProfile : Profile
         CreateMap<CreateVideoDto, Video>();
         CreateMap<UpdateVideoDto, Video>();
         CreateMap<Video, GetVideoDto>();
+        
+        CreateMap<CreateCommentDto, Comment>();
+        CreateMap<UpdateCommentDto, Comment>();
+        CreateMap<ContextMarshalException, GetCommentDto>();
     }
 }

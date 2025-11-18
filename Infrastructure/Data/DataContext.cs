@@ -8,4 +8,5 @@ public class DataContext(DbContextOptions options) : IdentityDbContext<AppUser>(
 {
     public DbSet<News> News { get; set; }
     public DbSet<Video> Videos { get; set; }
+    public DbSet<Comment> Comments { get; set; }
 }
