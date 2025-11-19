@@ -11,8 +11,6 @@ using Infrastructure.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.IdentityModel.JsonWebTokens;
 using Serilog;
 
 namespace Infrastructure.Services;
@@ -24,130 +22,204 @@ public class UserService(
     IHttpContextAccessor accessor,
     ICacheService cacheService) : IUserService
 {
-    
+    private string? GetCurrentUserId() =>
+        accessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
     private async Task RefreshCacheAsync()
     {
-        var allUsers = await context.Users.ToListAsync();
-        await cacheService.AddAsync(CacheKeys.Users, allUsers, DateTimeOffset.Now.AddMinutes(5));
-        Log.Information("Refreshed cache with key {k}", CacheKeys.Users);
+        try
+        {
+            var allUsers = await context.Users.Where(u => !u.IsDeleted).ToListAsync();
+            await cacheService.AddAsync(CacheKeys.Users, allUsers, DateTimeOffset.Now.AddMinutes(5));
+            Log.Information("Refreshed cache with key {k}", CacheKeys.Users);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Failed to refresh users cache");
+        }
     }
-    
+
     public async Task<PaginationResponse<List<GetUserDto>>> GetAllUsersAsync(UserFilter filter)
     {
-        var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "anonymous";
-        Log.Information("User {userId} tries to get {pageSize} users", userId, filter.PageSize);
-        
-        var usersInCache = await cacheService.GetAsync<List<AppUser>>(CacheKeys.Users);
-
-        if (usersInCache is null)
+        try
         {
-            usersInCache = await context.Users.Where(u => !u.IsDeleted).ToListAsync();
+            var userId = GetCurrentUserId() ?? "anonymous";
+            Log.Information("User {userId} tries to get {pageSize} users", userId, filter.PageSize);
 
-            await cacheService.AddAsync(CacheKeys.Users, usersInCache, DateTimeOffset.Now.AddMinutes(5));
+            var usersInCache = await cacheService.GetAsync<List<AppUser>>(CacheKeys.Users);
+            if (usersInCache == null)
+            {
+                usersInCache = await context.Users.Where(u => !u.IsDeleted).ToListAsync();
+                await cacheService.AddAsync(CacheKeys.Users, usersInCache, DateTimeOffset.Now.AddMinutes(5));
+            }
+
+            var query = usersInCache.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.NickName))
+                query = query.Where(u => u.Nickname.Contains(filter.NickName, StringComparison.OrdinalIgnoreCase));
+
+            if (!string.IsNullOrEmpty(filter.Email))
+                query = query.Where(u => u.Email != null && u.Email.Contains(filter.Email, StringComparison.OrdinalIgnoreCase));
+
+            if (filter.Role.HasValue)
+            {
+                var usersInRole = await userManager.GetUsersInRoleAsync(filter.Role.Value.ToString());
+                var userIds = usersInRole.Select(u => u.Id).ToHashSet();
+                query = query.Where(u => userIds.Contains(u.Id));
+            }
+
+            var totalCount = query.Count();
+            var skip = (filter.PageNumber - 1) * filter.PageSize;
+            var items = query.Skip(skip).Take(filter.PageSize).ToList();
+
+            if (!items.Any())
+            {
+                Log.Warning("No users found for the given filter");
+                return new PaginationResponse<List<GetUserDto>>(HttpStatusCode.NotFound, "Not found users");
+            }
+
+            var usersDto = mapper.Map<List<GetUserDto>>(items);
+
+            foreach (var userDto in usersDto)
+            {
+                var identityUser = await userManager.FindByIdAsync(userDto.Id);
+                if (identityUser != null)
+                {
+                    var roles = await userManager.GetRolesAsync(identityUser);
+                    userDto.Roles = roles.ToList();
+                }
+            }
+
+            Log.Information("Found {count} users", totalCount);
+            return new PaginationResponse<List<GetUserDto>>(usersDto, totalCount, filter.PageNumber, filter.PageSize);
         }
-
-        var query = usersInCache.AsQueryable();
-
-        if (!string.IsNullOrEmpty(filter.NickName))
-            query = query.Where(n => n.Nickname.Contains(filter.NickName, StringComparison.OrdinalIgnoreCase) && !n.IsDeleted);
-        
-        if (!string.IsNullOrEmpty(filter.Email))
-            query = query.Where(n => n.Email!.Contains(filter.Email, StringComparison.OrdinalIgnoreCase) && !n.IsDeleted);
-
-        if (filter.Role.HasValue)
+        catch (Exception ex)
         {
-            var usersInRole = await userManager.GetUsersInRoleAsync(filter.Role.Value.ToString());
-            var userIds = usersInRole.Select(x => x.Id).ToList();
-            query = query.Where(x => userIds.Contains(x.Id));
+            Log.Error(ex, "Failed to get all users");
+            return new PaginationResponse<List<GetUserDto>>(HttpStatusCode.InternalServerError, "Failed to get users");
         }
-
-        var totalCount = query.Count();
-        var skip = (filter.PageNumber - 1) * filter.PageSize;
-        var items = await query
-            .Skip(skip)
-            .Take(filter.PageSize)
-            .ToListAsync();
-
-        var mappedList = mapper.Map<List<GetUserDto>>(items);
-
-        Log.Information("Found {count} elements", totalCount);
-        return new PaginationResponse<List<GetUserDto>>(mappedList, totalCount, filter.PageNumber, filter.PageSize);
     }
 
     public async Task<Response<GetUserDto>> GetUserByIdAsync(string id)
     {
-        var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "anonymous";
-        Log.Information("User {userId} tries to get user with id {id}", userId, id);
-        var user = await userManager.FindByIdAsync(id);
-
-        if (user == null)
+        try
         {
-            Log.Warning("Not found the user with id {id}", id);
-            return new Response<GetUserDto>(HttpStatusCode.NotFound, $"Not found the user with id {id}");
+            var userId = GetCurrentUserId();
+            if (userId == null)
+                return new Response<GetUserDto>(HttpStatusCode.Unauthorized, "Unauthorized");
+
+            var currentUser = await context.Users.FindAsync(userId);
+            var currentUserRoles = await userManager.GetRolesAsync(currentUser!);
+
+            Log.Information("User {userId} tries to get user with id {id}", userId, id);
+
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted);
+            if (user == null)
+            {
+                Log.Warning("User with id {id} not found", id);
+                return new Response<GetUserDto>(HttpStatusCode.NotFound, $"Not found the user with id {id}");
+            }
+            
+            var isOwner = user.Id == userId;
+            var isAdmin = currentUserRoles.Contains("Admin");
+            var isModerator = currentUserRoles.Contains("Moderator");
+
+            if (!isOwner && !(isAdmin || isModerator))
+                return new Response<GetUserDto>(HttpStatusCode.Forbidden, "Forbidden");
+
+            var roles = await userManager.GetRolesAsync(user);
+            var mappedUser = mapper.Map<GetUserDto>(user);
+            mappedUser.Roles = roles.ToList();
+
+            Log.Information("Successfully retrieved user with id {id}", id);
+            return new Response<GetUserDto>(mappedUser);
         }
-
-        var roles = await userManager.GetRolesAsync(user);
-        var mappedUser = mapper.Map<GetUserDto>(user);
-        mappedUser.Roles = roles.ToList();
-
-        await RefreshCacheAsync();
-        
-        Log.Information("Got the user with id {id} successfully", id);
-        return new Response<GetUserDto>(mappedUser);
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Failed to get user by id {id}", id);
+            return new Response<GetUserDto>(HttpStatusCode.InternalServerError, "Failed to get user");
+        }
     }
 
     public async Task<Response<string>> UpdateUserAsync(UpdateUserDto dto)
     {
-        var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "anonymous";
-        Log.Information("User {userId} tries to update the user with id {id}", userId, dto.Id);
-        var user = await userManager.FindByIdAsync(dto.Id);
-
-        if (user is null)
+        try
         {
-            Log.Warning("Not found the user with id {id} to update", dto.Id);
-            return new Response<string>(HttpStatusCode.NotFound, $"Not found the user with id {dto.Id} to update");
-        }
-        
-        mapper.Map(dto, user);
-        user.UpdatedAt = DateTime.UtcNow;
-        var result = await context.SaveChangesAsync();
+            var userId = GetCurrentUserId();
+            if (userId == null)
+                return new Response<string>(HttpStatusCode.Unauthorized, "Unauthorized");
 
-        if (result == 0)
-        {
-            Log.Warning("Failed to update the user with id {id}", dto.Id);
-            return new Response<string>(HttpStatusCode.BadRequest, $"Failed to update the user with id {dto.Id}");
+            var currentUser = await context.Users.FindAsync(userId);
+            var currentUserRoles = await userManager.GetRolesAsync(currentUser!);
+
+            Log.Information("User {userId} tries to update the user with id {id}", userId, dto.Id);
+
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Id == dto.Id && !u.IsDeleted);
+            if (user == null)
+            {
+                Log.Warning("User with id {id} not found for update", dto.Id);
+                return new Response<string>(HttpStatusCode.NotFound, $"Not found the user with id {dto.Id} to update");
+            }
+
+            var isOwner = dto.Id == userId;
+            var isAdmin = currentUserRoles.Contains("Admin");
+
+            if (!isOwner && !isAdmin)
+                return new Response<string>(HttpStatusCode.Forbidden, "Forbidden");
+            
+            mapper.Map(dto, user);
+            user.UpdatedAt = DateTime.UtcNow;
+
+            var result = await context.SaveChangesAsync();
+            if (result == 0)
+            {
+                Log.Warning("Failed to update the user with id {id}", dto.Id);
+                return new Response<string>(HttpStatusCode.BadRequest, $"Failed to update the user with id {dto.Id}");
+            }
+
+            await RefreshCacheAsync();
+
+            Log.Information("Updated user with id {id} successfully", dto.Id);
+            return new Response<string>(HttpStatusCode.OK, $"Updated user with id {dto.Id} successfully");
         }
-        
-        await RefreshCacheAsync();
-        
-        Log.Information("Updated the user with id {id} successfully", dto.Id);
-        return new Response<string>(HttpStatusCode.OK, $"Updated the user with id {dto.Id} successfully");
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Failed to update user with id {id}", dto.Id);
+            return new Response<string>(HttpStatusCode.InternalServerError, "Failed to update user");
+        }
     }
 
     public async Task<Response<string>> DeleteUserAsync(string id)
     {
-        var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "anonymous";
-        Log.Information("User {userId} tries to delete the user with id {id}", userId, id);
-        var user = await userManager.FindByIdAsync(id);
-
-        if (user is null)
+        try
         {
-            Log.Warning("Not found the user with id {id} to delete", id);
-            return new Response<string>(HttpStatusCode.NotFound, $"Not found the user with id {id} to delete");
+            var userId = GetCurrentUserId() ?? "anonymous";
+            Log.Information("User {userId} tries to delete the user with id {id}", userId, id);
+
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted);
+            if (user == null)
+            {
+                Log.Warning("User with id {id} not found for deletion", id);
+                return new Response<string>(HttpStatusCode.NotFound, $"Not found the user with id {id} to delete");
+            }
+
+            user.IsDeleted = true;
+            var result = await context.SaveChangesAsync();
+            if (result == 0)
+            {
+                Log.Warning("Failed to delete the user with id {id}", id);
+                return new Response<string>(HttpStatusCode.BadRequest, $"Failed to delete the user with id {id}");
+            }
+
+            await RefreshCacheAsync();
+
+            Log.Information("Deleted user with id {id} successfully", id);
+            return new Response<string>(HttpStatusCode.OK, "Deleted user successfully");
         }
-
-        user.IsDeleted = true;
-        var result = await context.SaveChangesAsync();
-
-        if (result == 0)
+        catch (Exception ex)
         {
-            Log.Warning("Failed to update the user with id {id}", id);
-            return new Response<string>(HttpStatusCode.BadRequest, $"Failed to update the user with id {userId}");
-        } 
-        
-        await RefreshCacheAsync();
-        
-        Log.Information("Updated the user with id {id} successfully", id);
-        return new Response<string>(HttpStatusCode.OK, $"Updated user successfully");
+            Log.Error(ex, "Failed to delete user with id {id}", id);
+            return new Response<string>(HttpStatusCode.InternalServerError, "Failed to delete user");
+        }
     }
 }

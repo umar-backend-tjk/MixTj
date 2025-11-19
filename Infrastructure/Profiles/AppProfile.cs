@@ -26,6 +26,6 @@ public class AppProfile : Profile
         
         CreateMap<CreateCommentDto, Comment>();
         CreateMap<UpdateCommentDto, Comment>();
-        CreateMap<ContextMarshalException, GetCommentDto>();
+        CreateMap<Comment, GetCommentDto>();
     }
 }

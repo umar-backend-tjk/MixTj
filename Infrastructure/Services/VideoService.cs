@@ -9,6 +9,7 @@ using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Infrastructure.Responses;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -16,6 +17,7 @@ namespace Infrastructure.Services;
 
 public class VideoService(
     DataContext context, 
+    UserManager<AppUser?> userManager,
     IMapper mapper, 
     IHttpContextAccessor accessor, 
     ICacheService cacheService,
@@ -98,13 +100,13 @@ public class VideoService(
                 await cacheService.AddAsync(CacheKeys.Videos, videosInCache, DateTimeOffset.Now.AddMinutes(5));
             }
 
-            var query = videosInCache.AsQueryable();
+            var query = videosInCache.Where(v => !v.IsDeleted).AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.AuthorId))
-                query = query.Where(n => n.AuthorId == filter.AuthorId && !n.IsDeleted);
+                query = query.Where(n => n.AuthorId == filter.AuthorId);
 
             if (!string.IsNullOrEmpty(filter.Title))
-                query = query.Where(n => n.Title == filter.Title && !n.IsDeleted);
+                query = query.Where(n => n.Title == filter.Title);
 
             var totalCount = query.Count();
             var skip = (filter.PageNumber - 1) * filter.PageSize;
@@ -153,83 +155,110 @@ public class VideoService(
     }
 
     public async Task<Response<string>> UpdateVideoAsync(UpdateVideoDto updateDto)
+{
+    try
     {
-        try
+        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        Log.Information("User {userId} tries to update the video with id {videoId}", userId, updateDto.Id);
+
+        var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == updateDto.Id && !v.IsDeleted);
+        if (video is null)
         {
-            var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
-            Log.Information("User {userId} tries to update the video with id {videoId}", userId, updateDto.Id);
-
-            var video = await context.Videos.FirstOrDefaultAsync(n => n.Id == updateDto.Id && !n.IsDeleted);
-
-            if (video is null)
-            {
-                Log.Warning("Not found the video with id {videoId} to update", updateDto.Id);
-                return new Response<string>(HttpStatusCode.NotFound, "Not found the video");
-            }
-
-            if (video.AuthorId != userId)
-            {
-                Log.Information("Failed to update the video");
-                return new Response<string>(HttpStatusCode.Forbidden, "You can't to update someone else's video");
-            }
-            
-            mapper.Map(updateDto, video);
-            video.UpdatedAt = DateTime.UtcNow;
-
-            var result = await context.SaveChangesAsync();
-
-            if (result == 0)
-            {
-                Log.Warning("Failed to update the video {title}", video.Title);
-                return new Response<string>(HttpStatusCode.BadRequest, "Failed to update the new video");
-            }
-
-            await cacheService.RemoveAsync(CacheKeys.Videos);
-
-            Log.Information("Updated a video {title} successfully", updateDto.Title);
-            return new Response<string>(HttpStatusCode.OK, $"Updated a video {updateDto.Title} successfully");
+            Log.Warning("Video with id {videoId} not found to update", updateDto.Id);
+            return new Response<string>(HttpStatusCode.NotFound, "Video not found");
         }
-        catch (Exception ex)
+        
+        var currentUserRoles = await userManager.GetRolesAsync(await context.Users.FindAsync(userId)!);
+        var isOwner = video.AuthorId == userId;
+        var isAdmin = currentUserRoles.Contains("Admin");
+        var isModerator = currentUserRoles.Contains("Moderator");
+
+        if (!isOwner && !(isAdmin || isModerator))
         {
-            Log.Error(ex, "Unexpected error in UpdateVideoAsync");
-            return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected server error");
+            Log.Warning("User {userId} is not allowed to update video {videoId}", userId, updateDto.Id);
+            return new Response<string>(HttpStatusCode.Forbidden, "Forbidden");
         }
+
+        mapper.Map(updateDto, video);
+        video.UpdatedAt = DateTime.UtcNow;
+
+        var result = await context.SaveChangesAsync();
+        if (result == 0)
+        {
+            Log.Warning("Failed to update the video {title}", updateDto.Title);
+            return new Response<string>(HttpStatusCode.BadRequest, "Failed to update the video");
+        }
+
+        await cacheService.RemoveAsync(CacheKeys.Videos);
+
+        Log.Information("Updated video {title} successfully", updateDto.Title);
+        return new Response<string>(HttpStatusCode.OK, $"Updated video {updateDto.Title} successfully");
     }
-
-    public async Task<Response<string>> DeleteVideoAsync(Guid videoId)
+    catch (Exception ex)
     {
-        try
-        {
-            var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            Log.Information("User {userID} tries to delete the video with id {id}", userId, videoId);
-
-            var theVideo = await context.Videos.FirstOrDefaultAsync(n => n.Id == videoId && !n.IsDeleted);
-
-            if (theVideo is null)
-            {
-                Log.Warning("Not found the video with id {id}", videoId);
-                return new Response<string>(HttpStatusCode.NotFound, "Video not found");
-            }
-
-            theVideo.IsDeleted = true;
-            var result = await context.SaveChangesAsync();
-
-            if (result == 0)
-            {
-                Log.Warning("Failed to delete the video with id {id}", videoId);
-                return new Response<string>(HttpStatusCode.BadRequest, "Failed to delete the video");
-            }
-
-            await cacheService.RemoveAsync(CacheKeys.Videos);
-            await fileService.DeleteFileAsync(theVideo.VideoPath);
-
-            Log.Information("User {userId} deleted the video with id {id} successfully", userId, videoId);
-            return new Response<string>(HttpStatusCode.OK, "Deleted the video successfully");
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex, "Unexpected error in DeleteVideoAsync");
-            return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected server error");
-        }
+        Log.Error(ex, "Unexpected error in UpdateVideoAsync");
+        return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected server error");
     }
+}
+
+public async Task<Response<string>> DeleteVideoAsync(Guid videoId)
+{
+    try
+    {
+        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        Log.Information("User {userId} tries to delete the video with id {videoId}", userId, videoId);
+
+        var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId && !v.IsDeleted);
+        if (video is null)
+        {
+            Log.Warning("Video with id {videoId} not found", videoId);
+            return new Response<string>(HttpStatusCode.NotFound, "Video not found");
+        }
+        
+        var currentUserRoles = await userManager.GetRolesAsync(await context.Users.FindAsync(userId)!);
+        var isOwner = video.AuthorId == userId;
+        var isAdmin = currentUserRoles.Contains("Admin");
+        var isModerator = currentUserRoles.Contains("Moderator");
+
+        if (!isOwner && !(isAdmin || isModerator))
+        {
+            Log.Warning("User {userId} is not allowed to delete video {videoId}", userId, videoId);
+            return new Response<string>(HttpStatusCode.Forbidden, "Forbidden");
+        }
+
+        context.Videos.Remove(video);
+        var result = await context.SaveChangesAsync();
+        if (result == 0)
+        {
+            Log.Warning("Failed to delete the video with id {videoId}", videoId);
+            return new Response<string>(HttpStatusCode.BadRequest, "Failed to delete the video");
+        }
+
+        await cacheService.RemoveAsync(CacheKeys.Videos);
+        
+        if (!string.IsNullOrEmpty(video.VideoPath))
+        {
+            try
+            {
+                await fileService.DeleteFileAsync(video.VideoPath);
+                Log.Information("Deleted video file {videoPath}", video.VideoPath);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Failed to delete video file {videoPath}", video.VideoPath);
+            }
+        }
+
+        Log.Information("Deleted video {videoId} successfully", videoId);
+        return new Response<string>(HttpStatusCode.OK, "Deleted video successfully");
+    }
+    catch (Exception ex)
+    {
+        Log.Error(ex, "Unexpected error in DeleteVideoAsync");
+        return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected server error");
+    }
+}
+
 }

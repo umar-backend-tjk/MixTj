@@ -9,6 +9,7 @@ using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Infrastructure.Responses;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -16,6 +17,7 @@ namespace Infrastructure.Services;
 
 public class NewsService
     (DataContext context, 
+    UserManager<AppUser> userManager,
     IMapper mapper, 
     IHttpContextAccessor accessor, 
     ICacheService cacheService) : INewsService
@@ -83,16 +85,16 @@ public class NewsService
                 await cacheService.AddAsync(CacheKeys.News, newsInCache, DateTimeOffset.Now.AddMinutes(5));
             }
 
-            var query = newsInCache.AsQueryable();
+            var query = newsInCache.Where(n => !n.IsDeleted).AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.AuthorId))
-                query = query.Where(n => n.AuthorId == filter.AuthorId && !n.IsDeleted);
+                query = query.Where(n => n.AuthorId == filter.AuthorId);
             
             if (!string.IsNullOrEmpty(filter.Title))
-                query = query.Where(n => n.Title == filter.Title && !n.IsDeleted);
+                query = query.Where(n => n.Title == filter.Title);
             
             if (filter.Category.HasValue)
-                query = query.Where(n => n.Category == filter.Category && !n.IsDeleted);
+                query = query.Where(n => n.Category == filter.Category);
 
             if (filter.Tags?.Length > 0)
                 query = query.Where(n => n.Tags != null && n.Tags.Any(t => filter.Tags.Contains(t)));
@@ -144,76 +146,92 @@ public class NewsService
     }
 
     public async Task<Response<string>> UpdateNewsAsync(UpdateNewsDto dto)
+{
+    try
     {
-        try
+        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        Log.Information("User {userId} tries to update the news with id {newsId}", userId, dto.Id);
+
+        var currentUserRoles = await userManager.GetRolesAsync(await context.Users.FindAsync(userId)!);
+
+        var news = await context.News.FirstOrDefaultAsync(n => n.Id == dto.Id && !n.IsDeleted);
+        if (news == null)
         {
-            var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
-            Log.Information("User {userId} tries to update the news with id {newId}", userId, dto.Id);
-            
-            var news = await context.News.FirstOrDefaultAsync(n => n.Id == dto.Id && !n.IsDeleted);
-
-            if (news is null)
-            {
-                Log.Warning("Not found the news with id {newId} to update", dto.Id);
-                return new Response<string>(HttpStatusCode.NotFound, "Not found the news");
-            }
-
-            mapper.Map(dto, news);
-            news.UpdatedAt = DateTime.UtcNow;
-            
-            var result = await context.SaveChangesAsync();
-            
-            if (result == 0)
-            {
-                Log.Warning("Failed to update the news {title}", dto.Title);
-                return new Response<string>(HttpStatusCode.BadRequest, "Failed to update the news");
-            }
-
-            await RefreshCacheAsync();
-            
-            Log.Information("Updated a news {title} successfully", dto.Title);
-            return new Response<string>(HttpStatusCode.OK, $"Updated a news {dto.Title} successfully");
+            Log.Warning("News with id {newsId} not found to update", dto.Id);
+            return new Response<string>(HttpStatusCode.NotFound, "News not found");
         }
-        catch (Exception ex)
+        
+        var isOwner = news.AuthorId == userId;
+        var isAdmin = currentUserRoles.Contains("Admin");
+        var isModerator = currentUserRoles.Contains("Moderator");
+
+        if (!isOwner && !(isAdmin || isModerator))
+            return new Response<string>(HttpStatusCode.Forbidden, "Forbidden");
+
+        mapper.Map(dto, news);
+        news.UpdatedAt = DateTime.UtcNow;
+
+        var result = await context.SaveChangesAsync();
+        if (result == 0)
         {
-            Log.Error(ex, "Unexpected error in UpdateNewsAsync");
-            return new Response<string>(HttpStatusCode.InternalServerError, "An unexpected error occurred");
+            Log.Warning("Failed to update the news {title}", dto.Title);
+            return new Response<string>(HttpStatusCode.BadRequest, "Failed to update the news");
         }
+
+        await RefreshCacheAsync();
+
+        Log.Information("Updated news {title} successfully", dto.Title);
+        return new Response<string>(HttpStatusCode.OK, $"Updated news {dto.Title} successfully");
     }
-
-    public async Task<Response<string>> DeleteNewsAsync(Guid id)
+    catch (Exception ex)
     {
-        try
-        {
-            var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            Log.Information("User {userID} tries to delete the news with id {id}", userId, id);
-            
-            var theNews = await context.News.FirstOrDefaultAsync(n => n.Id == id && !n.IsDeleted);
-            
-            if (theNews is null)
-            {
-                Log.Warning("Not found the news with id {id}", id);
-                return new Response<string>(HttpStatusCode.NotFound, "News not found");
-            }
-
-            theNews.IsDeleted = true;
-            var result = await context.SaveChangesAsync();
-
-            if (result == 0)
-            {
-                Log.Warning("Failed to delete the news with id {id}", id);
-                return new Response<string>(HttpStatusCode.BadRequest, "Failed to delete the news");
-            }
-            
-            await RefreshCacheAsync();
-            
-            Log.Information("User {userId} deleted the news with id {id} successfully", userId, id);
-            return new Response<string>(HttpStatusCode.OK, "Deleted the news successfully");
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex, "Unexpected error in DeleteNewsAsync");
-            return new Response<string>(HttpStatusCode.InternalServerError, "An unexpected error occurred");
-        }
+        Log.Error(ex, "Unexpected error in UpdateNewsAsync");
+        return new Response<string>(HttpStatusCode.InternalServerError, "An unexpected error occurred");
     }
+}
+
+public async Task<Response<string>> DeleteNewsAsync(Guid id)
+{
+    try
+    {
+        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        Log.Information("User {userId} tries to delete the news with id {newsId}", userId, id);
+
+        var currentUserRoles = await userManager.GetRolesAsync(await context.Users.FindAsync(userId)!);
+
+        var news = await context.News.FirstOrDefaultAsync(n => n.Id == id && !n.IsDeleted);
+        if (news == null)
+        {
+            Log.Warning("News with id {newsId} not found for deletion", id);
+            return new Response<string>(HttpStatusCode.NotFound, "News not found");
+        }
+        
+        var isOwner = news.AuthorId == userId;
+        var isAdmin = currentUserRoles.Contains("Admin");
+        var isModerator = currentUserRoles.Contains("Moderator");
+
+        if (!isOwner && !(isAdmin || isModerator))
+            return new Response<string>(HttpStatusCode.Forbidden, "Forbidden");
+
+        news.IsDeleted = true;
+        var result = await context.SaveChangesAsync();
+        if (result == 0)
+        {
+            Log.Warning("Failed to delete the news with id {newsId}", id);
+            return new Response<string>(HttpStatusCode.BadRequest, "Failed to delete the news");
+        }
+
+        await RefreshCacheAsync();
+
+        Log.Information("Deleted news with id {newsId} successfully", id);
+        return new Response<string>(HttpStatusCode.OK, "Deleted news successfully");
+    }
+    catch (Exception ex)
+    {
+        Log.Error(ex, "Unexpected error in DeleteNewsAsync");
+        return new Response<string>(HttpStatusCode.InternalServerError, "An unexpected error occurred");
+    }
+}
 }

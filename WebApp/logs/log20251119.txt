@@ -1,0 +1,635 @@
+2025-11-19 14:31:34.536 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-19 14:31:38.024 +05:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-19 14:31:38.910 +05:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-19 14:31:38.957 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-19 14:31:38.990 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-19 14:31:39.042 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-19 14:31:39.606 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-19 14:31:40.009 +05:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-19 14:31:40.686 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-19 14:31:40.707 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-19 14:31:40.760 +05:00 [INF] Hosting environment: Development
+2025-11-19 14:31:40.769 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-19 14:35:10.362 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/ - null null
+2025-11-19 14:35:10.544 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/ - 404 0 null 181.1265ms
+2025-11-19 14:35:10.659 +05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5157/, Response status code: 404
+2025-11-19 14:35:14.606 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/ - null null
+2025-11-19 14:35:14.614 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/ - 301 0 null 7.3524ms
+2025-11-19 14:35:14.663 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/index.html - null null
+2025-11-19 14:35:14.862 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/index.html - 200 null text/html;charset=utf-8 198.9033ms
+2025-11-19 14:35:14.932 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - null null
+2025-11-19 14:35:14.959 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - 499 628 image/png 26.4493ms
+2025-11-19 14:35:15.001 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - null null
+2025-11-19 14:35:15.745 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 743.1088ms
+2025-11-19 14:35:31.301 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 62
+2025-11-19 14:35:31.314 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:35:31.390 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-19 14:35:31.610 +05:00 [INF] Trying to login user Ivan_Bloger
+2025-11-19 14:35:31.725 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-19 14:35:31.730 +05:00 [WRN] Not found the user Ivan_Bloger
+2025-11-19 14:35:31.744 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:35:31.758 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 360.185ms
+2025-11-19 14:35:31.761 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:35:31.776 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 475.3572ms
+2025-11-19 14:35:39.554 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 62
+2025-11-19 14:35:39.562 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:35:39.577 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-19 14:35:39.604 +05:00 [INF] Trying to login user Ivan Bloger
+2025-11-19 14:35:39.742 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-19 14:35:40.016 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:35:40.058 +05:00 [INF] User Ivan Bloger logged in
+2025-11-19 14:35:40.062 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:35:40.066 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 485.9466ms
+2025-11-19 14:35:40.069 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:35:40.071 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 517.1001ms
+2025-11-19 14:36:09.557 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/index.html - null null
+2025-11-19 14:36:09.702 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/swagger-ui.css - null null
+2025-11-19 14:36:09.773 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/index.html - 200 null text/html;charset=utf-8 216.2648ms
+2025-11-19 14:36:09.830 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/swagger-ui.css - 499 155175 text/css 127.4226ms
+2025-11-19 14:36:10.015 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - null null
+2025-11-19 14:36:10.105 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 88.8231ms
+2025-11-19 14:38:05.901 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News - application/json 213
+2025-11-19 14:38:05.983 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.CreateNewsAsync (WebApp)'
+2025-11-19 14:38:06.000 +05:00 [INF] Route matched with {action = "CreateNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] CreateNewsAsync(Domain.DTOs.News.CreateNewsDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-19 14:38:06.059 +05:00 [INF] User 30f1cdac-67d2-46fe-b90a-c4ae3f13f09b tries to create a new news
+2025-11-19 14:38:06.490 +05:00 [INF] Executed DbCommand (127ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Int32), @p3='?', @p4='?' (DbType = DateTime), @p5='?' (DbType = Boolean), @p6='?' (DbType = Object), @p7='?', @p8='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "News" ("Id", "AuthorId", "Category", "Content", "CreatedAt", "IsDeleted", "Tags", "Title", "UpdatedAt")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-19 14:38:06.530 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE NOT (n."IsDeleted")
+2025-11-19 14:38:06.765 +05:00 [INF] Redis : Added new data to cache by key: News, expiration time before : "2025-11-19T14:43:06.5586188+05:00"
+2025-11-19 14:38:06.768 +05:00 [INF] Refreshed cache with key News
+2025-11-19 14:38:06.769 +05:00 [INF] Created a news netanyahu Died successfully
+2025-11-19 14:38:06.771 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:38:06.774 +05:00 [INF] Executed action WebApp.Controllers.NewsController.CreateNewsAsync (WebApp) in 764.6968ms
+2025-11-19 14:38:06.778 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.CreateNewsAsync (WebApp)'
+2025-11-19 14:38:06.780 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News - 200 null application/json; charset=utf-8 878.9456ms
+2025-11-19 14:38:30.111 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 58
+2025-11-19 14:38:30.120 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:38:30.128 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-19 14:38:30.173 +05:00 [INF] Trying to login user Admin
+2025-11-19 14:38:30.189 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-19 14:38:30.422 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:38:30.425 +05:00 [INF] User Admin logged in
+2025-11-19 14:38:30.426 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:38:30.429 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 289.9901ms
+2025-11-19 14:38:30.435 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:38:30.437 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 325.8006ms
+2025-11-19 14:38:47.066 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News - null null
+2025-11-19 14:38:47.070 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-19 14:38:47.085 +05:00 [INF] Route matched with {action = "GetAllNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.News.GetNewsDto]]] GetAllNewsAsync(Domain.Filters.NewsFilter) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-19 14:38:47.115 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get all the news
+2025-11-19 14:38:47.140 +05:00 [INF] Redis: Data retrieved from cache key: News
+2025-11-19 14:38:47.212 +05:00 [INF] Found 4 elements
+2025-11-19 14:38:47.232 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.News.GetNewsDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:38:47.241 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp) in 148.8755ms
+2025-11-19 14:38:47.243 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-19 14:38:47.253 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News - 200 null application/json; charset=utf-8 187.1436ms
+2025-11-19 14:40:53.018 +05:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5157/api/News - application/json 282
+2025-11-19 14:40:53.027 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.UpdateNewsAsync (WebApp)'
+2025-11-19 14:40:53.037 +05:00 [INF] Route matched with {action = "UpdateNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] UpdateNewsAsync(Domain.DTOs.News.UpdateNewsDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-19 14:40:53.066 +05:00 [INF] User 30f1cdac-67d2-46fe-b90a-c4ae3f13f09b tries to update the news with id "019a9b7a-78ad-7770-806c-684b194fd6a5"
+2025-11-19 14:40:53.125 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-19 14:40:53.131 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:40:53.163 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__dto_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE n."Id" = @__dto_Id_0 AND NOT (n."IsDeleted")
+LIMIT 1
+2025-11-19 14:40:53.227 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[@p3='?' (DbType = Guid), @p0='?', @p1='?', @p2='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "News" SET "Content" = @p0, "Title" = @p1, "UpdatedAt" = @p2
+WHERE "Id" = @p3;
+2025-11-19 14:40:53.233 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE NOT (n."IsDeleted")
+2025-11-19 14:40:53.240 +05:00 [INF] Redis : Added new data to cache by key: News, expiration time before : "2025-11-19T14:45:53.2387048+05:00"
+2025-11-19 14:40:53.243 +05:00 [INF] Refreshed cache with key News
+2025-11-19 14:40:53.244 +05:00 [INF] Updated news premier minister of israel died successfully
+2025-11-19 14:40:53.245 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:40:53.247 +05:00 [INF] Executed action WebApp.Controllers.NewsController.UpdateNewsAsync (WebApp) in 201.1017ms
+2025-11-19 14:40:53.262 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.UpdateNewsAsync (WebApp)'
+2025-11-19 14:40:53.263 +05:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5157/api/News - 200 null application/json; charset=utf-8 245.6705ms
+2025-11-19 14:41:00.864 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News - null null
+2025-11-19 14:41:00.869 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-19 14:41:00.873 +05:00 [INF] Route matched with {action = "GetAllNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.News.GetNewsDto]]] GetAllNewsAsync(Domain.Filters.NewsFilter) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-19 14:41:00.894 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get all the news
+2025-11-19 14:41:00.896 +05:00 [INF] Redis: Data retrieved from cache key: News
+2025-11-19 14:41:00.900 +05:00 [INF] Found 4 elements
+2025-11-19 14:41:00.911 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.News.GetNewsDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:41:00.912 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp) in 20.0194ms
+2025-11-19 14:41:00.916 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-19 14:41:00.925 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News - 200 null application/json; charset=utf-8 60.6255ms
+2025-11-19 14:41:26.826 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Users - null null
+2025-11-19 14:41:26.894 +05:00 [INF] Executing endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-19 14:41:26.945 +05:00 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.User.GetUserDto]]] GetAllUsersAsync(Domain.Filters.UserFilter) on controller WebApp.Controllers.UsersController (WebApp).
+2025-11-19 14:41:26.978 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get 10 users
+2025-11-19 14:41:26.988 +05:00 [WRN] Redis: There is no data in the cache for this key: Users
+2025-11-19 14:41:27.041 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE NOT (a."IsDeleted")
+2025-11-19 14:41:27.071 +05:00 [INF] Redis : Added new data to cache by key: Users, expiration time before : "2025-11-19T14:46:27.0446146+05:00"
+2025-11-19 14:41:27.095 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:41:27.108 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:41:27.122 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:41:27.125 +05:00 [INF] Found 3 users
+2025-11-19 14:41:27.127 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.User.GetUserDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:41:27.155 +05:00 [INF] Executed action WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp) in 196.3358ms
+2025-11-19 14:41:27.160 +05:00 [INF] Executed endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-19 14:41:27.162 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Users - 200 null application/json; charset=utf-8 335.808ms
+2025-11-19 14:41:50.330 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/register - application/json 85
+2025-11-19 14:41:50.334 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Register (WebApp)'
+2025-11-19 14:41:50.339 +05:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Register(Domain.DTOs.Auth.RegisterDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-19 14:41:50.352 +05:00 [INF] Trying to register user with email dovud@example.com
+2025-11-19 14:41:50.369 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2025-11-19 14:41:50.373 +05:00 [WRN] User with email dovud@example.com already exists.
+2025-11-19 14:41:50.389 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:41:50.401 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Register (WebApp) in 58.2688ms
+2025-11-19 14:41:50.407 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Register (WebApp)'
+2025-11-19 14:41:50.418 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/register - 200 null application/json; charset=utf-8 87.8325ms
+2025-11-19 14:42:04.881 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/register - application/json 89
+2025-11-19 14:42:04.885 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Register (WebApp)'
+2025-11-19 14:42:04.887 +05:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Register(Domain.DTOs.Auth.RegisterDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-19 14:42:04.900 +05:00 [INF] Trying to register user with email dovud1919@example.com
+2025-11-19 14:42:04.911 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2025-11-19 14:42:05.142 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2025-11-19 14:42:05.187 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?', @p1='?', @p2='?' (DbType = Int32), @p3='?', @p4='?' (DbType = DateTime), @p5='?', @p6='?' (DbType = Boolean), @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime), @p10='?', @p11='?', @p12='?', @p13='?', @p14='?', @p15='?' (DbType = Boolean), @p16='?', @p17='?' (DbType = Boolean), @p18='?' (DbType = DateTime), @p19='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "About", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "Nickname", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UpdatedAt", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19);
+2025-11-19 14:42:05.219 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-11-19 14:42:05.251 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?', @__p_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."UserId", a."RoleId"
+FROM "AspNetUserRoles" AS a
+WHERE a."UserId" = @__p_0 AND a."RoleId" = @__p_1
+LIMIT 1
+2025-11-19 14:42:05.262 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedRoleName_0
+LIMIT 2
+2025-11-19 14:42:05.284 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2025-11-19 14:42:05.355 +05:00 [INF] Executed DbCommand (37ms) [Parameters=[@p0='?', @p1='?', @p21='?', @p2='?', @p3='?' (DbType = Int32), @p4='?', @p22='?', @p5='?' (DbType = DateTime), @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTime), @p11='?', @p12='?', @p13='?', @p14='?', @p15='?', @p16='?' (DbType = Boolean), @p17='?', @p18='?' (DbType = Boolean), @p19='?' (DbType = DateTime), @p20='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "AspNetUserRoles" ("RoleId", "UserId")
+VALUES (@p0, @p1);
+UPDATE "AspNetUsers" SET "About" = @p2, "AccessFailedCount" = @p3, "ConcurrencyStamp" = @p4, "CreatedAt" = @p5, "Email" = @p6, "EmailConfirmed" = @p7, "IsDeleted" = @p8, "LockoutEnabled" = @p9, "LockoutEnd" = @p10, "Nickname" = @p11, "NormalizedEmail" = @p12, "NormalizedUserName" = @p13, "PasswordHash" = @p14, "PhoneNumber" = @p15, "PhoneNumberConfirmed" = @p16, "SecurityStamp" = @p17, "TwoFactorEnabled" = @p18, "UpdatedAt" = @p19, "UserName" = @p20
+WHERE "Id" = @p21 AND "ConcurrencyStamp" = @p22;
+2025-11-19 14:42:05.364 +05:00 [INF] Added role to user with email dovud1919@example.com
+2025-11-19 14:42:05.366 +05:00 [INF] User dovud1919@example.com registered successfully
+2025-11-19 14:42:05.368 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:42:05.370 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Register (WebApp) in 473.1164ms
+2025-11-19 14:42:05.374 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Register (WebApp)'
+2025-11-19 14:42:05.376 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/register - 200 null application/json; charset=utf-8 494.2966ms
+2025-11-19 14:42:19.433 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 60
+2025-11-19 14:42:19.450 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:42:19.459 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-19 14:42:19.462 +05:00 [INF] Trying to login user dovud1919
+2025-11-19 14:42:19.466 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-19 14:42:19.639 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:42:19.643 +05:00 [INF] User dovud1919 logged in
+2025-11-19 14:42:19.645 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:42:19.646 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 184.6162ms
+2025-11-19 14:42:19.648 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:42:19.649 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 216.1322ms
+2025-11-19 14:42:42.569 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News - null null
+2025-11-19 14:42:42.573 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-19 14:42:42.575 +05:00 [INF] Route matched with {action = "GetAllNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.News.GetNewsDto]]] GetAllNewsAsync(Domain.Filters.NewsFilter) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-19 14:42:42.578 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get all the news
+2025-11-19 14:42:42.580 +05:00 [INF] Redis: Data retrieved from cache key: News
+2025-11-19 14:42:42.584 +05:00 [INF] Found 4 elements
+2025-11-19 14:42:42.588 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.News.GetNewsDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:42:42.595 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp) in 17.0815ms
+2025-11-19 14:42:42.616 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-19 14:42:42.622 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News - 200 null application/json; charset=utf-8 52.9262ms
+2025-11-19 14:43:49.908 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Comments - application/json 125
+2025-11-19 14:43:49.911 +05:00 [INF] Executing endpoint 'WebApp.Controllers.CommentsController.CreateCommentAsync (WebApp)'
+2025-11-19 14:43:49.918 +05:00 [INF] Route matched with {action = "CreateComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] CreateCommentAsync(Domain.DTOs.Comment.CreateCommentDto) on controller WebApp.Controllers.CommentsController (WebApp).
+2025-11-19 14:43:49.947 +05:00 [INF] User d4d87bc1-a5b8-4d2b-967d-5312745bfd81 tries to post a comment to video/news with id "019a9b7a-78ad-7770-806c-684b194fd6a5"
+2025-11-19 14:43:50.159 +05:00 [INF] Executed DbCommand (38ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Boolean), @p3='?' (DbType = Guid), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Comments" ("Id", "CreatedAt", "IsDeleted", "NewsId", "Reply", "Text", "UpdatedAt", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-19 14:43:50.173 +05:00 [INF] Created a comment successfully
+2025-11-19 14:43:50.179 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:43:50.182 +05:00 [INF] Executed action WebApp.Controllers.CommentsController.CreateCommentAsync (WebApp) in 252.0902ms
+2025-11-19 14:43:50.195 +05:00 [INF] Executed endpoint 'WebApp.Controllers.CommentsController.CreateCommentAsync (WebApp)'
+2025-11-19 14:43:50.197 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Comments - 200 null application/json; charset=utf-8 289.1989ms
+2025-11-19 14:44:20.325 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Comments?newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - null null
+2025-11-19 14:44:20.329 +05:00 [INF] Executing endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-19 14:44:20.342 +05:00 [INF] Route matched with {action = "GetAllComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.Collections.Generic.List`1[Domain.DTOs.Comment.GetCommentDto]]] GetAllCommentsAsync(System.Nullable`1[System.Guid], System.Nullable`1[System.Guid]) on controller WebApp.Controllers.CommentsController (WebApp).
+2025-11-19 14:44:20.392 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__newsId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE n."Id" = @__newsId_0 AND NOT (n."IsDeleted")
+LIMIT 1
+2025-11-19 14:44:20.466 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__newsId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Comments" AS c
+WHERE NOT (c."IsDeleted") AND c."NewsId" = @__newsId_0
+2025-11-19 14:44:20.493 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__newsId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."IsDeleted", c."NewsId", c."Reply", c."Text", c."UpdatedAt", c."UserId", c."VideoId"
+FROM "Comments" AS c
+WHERE NOT (c."IsDeleted") AND c."NewsId" = @__newsId_0
+2025-11-19 14:44:20.525 +05:00 [ERR] Unexpected error in GetAllVideoAsync
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[Domain.Entities.Comment, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[Domain.DTOs.Comment.GetCommentDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Comment -> GetCommentDto
+Domain.Entities.Comment -> Domain.DTOs.Comment.GetCommentDto
+   at lambda_method704(Closure, Comment, GetCommentDto, ResolutionContext)
+   at lambda_method703(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method703(Closure, Object, List`1, ResolutionContext)
+   at Infrastructure.Services.CommentService.GetAllCommentAsync(Nullable`1 videoId, Nullable`1 newsId) in D:\.NET projects\MixTj\Infrastructure\Services\CommentService.cs:line 95
+2025-11-19 14:44:20.570 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.Collections.Generic.List`1[[Domain.DTOs.Comment.GetCommentDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:44:20.575 +05:00 [INF] Executed action WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp) in 220.6123ms
+2025-11-19 14:44:20.585 +05:00 [INF] Executed endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-19 14:44:20.587 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Comments?newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - 200 null application/json; charset=utf-8 262.1262ms
+2025-11-19 14:44:37.484 +05:00 [INF] Application is shutting down...
+2025-11-19 14:45:05.517 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-19 14:45:06.921 +05:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-19 14:45:07.399 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-19 14:45:07.426 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-19 14:45:07.432 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-19 14:45:07.446 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-19 14:45:07.795 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-19 14:45:07.979 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-19 14:45:08.231 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-19 14:45:08.235 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-19 14:45:08.237 +05:00 [INF] Hosting environment: Development
+2025-11-19 14:45:08.239 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-19 14:45:12.769 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Comments?newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - null null
+2025-11-19 14:45:12.991 +05:00 [INF] Executing endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-19 14:45:13.023 +05:00 [INF] Route matched with {action = "GetAllComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.Collections.Generic.List`1[Domain.DTOs.Comment.GetCommentDto]]] GetAllCommentsAsync(System.Nullable`1[System.Guid], System.Nullable`1[System.Guid]) on controller WebApp.Controllers.CommentsController (WebApp).
+2025-11-19 14:45:13.255 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__newsId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE n."Id" = @__newsId_0 AND NOT (n."IsDeleted")
+LIMIT 1
+2025-11-19 14:45:13.430 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__newsId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Comments" AS c
+WHERE NOT (c."IsDeleted") AND c."NewsId" = @__newsId_0
+2025-11-19 14:45:13.449 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__newsId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."IsDeleted", c."NewsId", c."Reply", c."Text", c."UpdatedAt", c."UserId", c."VideoId"
+FROM "Comments" AS c
+WHERE NOT (c."IsDeleted") AND c."NewsId" = @__newsId_0
+2025-11-19 14:45:13.507 +05:00 [INF] Found 1 comments
+2025-11-19 14:45:13.526 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.Collections.Generic.List`1[[Domain.DTOs.Comment.GetCommentDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:45:13.591 +05:00 [INF] Executed action WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp) in 555.8924ms
+2025-11-19 14:45:13.603 +05:00 [INF] Executed endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-19 14:45:13.622 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Comments?newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - 200 null application/json; charset=utf-8 850.898ms
+2025-11-19 14:46:05.531 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Comments?videoId=019a9b7a-72ad-7770-806c-684b194fd6a5&newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - null null
+2025-11-19 14:46:05.540 +05:00 [INF] Executing endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-19 14:46:05.542 +05:00 [INF] Route matched with {action = "GetAllComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.Collections.Generic.List`1[Domain.DTOs.Comment.GetCommentDto]]] GetAllCommentsAsync(System.Nullable`1[System.Guid], System.Nullable`1[System.Guid]) on controller WebApp.Controllers.CommentsController (WebApp).
+2025-11-19 14:46:05.704 +05:00 [INF] Executed DbCommand (35ms) [Parameters=[@__videoId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AuthorId", v."CreatedAt", v."Description", v."IsDeleted", v."Title", v."UpdatedAt", v."VideoPath"
+FROM "Videos" AS v
+WHERE v."Id" = @__videoId_0 AND NOT (v."IsDeleted")
+LIMIT 1
+2025-11-19 14:46:05.713 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.Comment.GetCommentDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:46:05.727 +05:00 [INF] Executed action WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp) in 181.5724ms
+2025-11-19 14:46:05.734 +05:00 [INF] Executed endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-19 14:46:05.739 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Comments?videoId=019a9b7a-72ad-7770-806c-684b194fd6a5&newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - 200 null application/json; charset=utf-8 205.5204ms
+2025-11-19 14:46:44.164 +05:00 [INF] Application is shutting down...
+2025-11-19 14:48:35.680 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-19 14:48:37.258 +05:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-19 14:48:37.779 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-19 14:48:37.806 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-19 14:48:37.823 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-19 14:48:37.839 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-19 14:48:38.195 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-19 14:48:38.425 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-19 14:48:38.857 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-19 14:48:38.869 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-19 14:48:38.871 +05:00 [INF] Hosting environment: Development
+2025-11-19 14:48:38.873 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-19 14:48:41.675 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Comments?videoId=019a9b7a-72ad-7770-806c-684b194fd6a5&newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - null null
+2025-11-19 14:48:41.938 +05:00 [INF] Executing endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-19 14:48:42.002 +05:00 [INF] Route matched with {action = "GetAllComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.Collections.Generic.List`1[Domain.DTOs.Comment.GetCommentDto]]] GetAllCommentsAsync(System.Nullable`1[System.Guid], System.Nullable`1[System.Guid]) on controller WebApp.Controllers.CommentsController (WebApp).
+2025-11-19 14:48:42.216 +05:00 [WRN] Exactly one of NewsId or VideoId must be provided.
+2025-11-19 14:48:42.234 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.Collections.Generic.List`1[[Domain.DTOs.Comment.GetCommentDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:48:42.297 +05:00 [INF] Executed action WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp) in 283.7358ms
+2025-11-19 14:48:42.308 +05:00 [INF] Executed endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-19 14:48:42.320 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Comments?videoId=019a9b7a-72ad-7770-806c-684b194fd6a5&newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - 200 null application/json; charset=utf-8 646.2631ms
+2025-11-19 14:49:23.927 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 60
+2025-11-19 14:49:23.941 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:49:23.961 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-19 14:49:24.008 +05:00 [INF] Trying to login user dovud1919
+2025-11-19 14:49:24.198 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-19 14:49:24.477 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:49:24.500 +05:00 [INF] User dovud1919 logged in
+2025-11-19 14:49:24.507 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:49:24.512 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 547.7293ms
+2025-11-19 14:49:24.515 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:49:24.533 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 603.1608ms
+2025-11-19 14:49:36.860 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 62
+2025-11-19 14:49:36.872 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:49:36.875 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-19 14:49:36.879 +05:00 [INF] Trying to login user Ivan Bloger
+2025-11-19 14:49:36.890 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-19 14:49:37.046 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:49:37.053 +05:00 [INF] User Ivan Bloger logged in
+2025-11-19 14:49:37.056 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:49:37.058 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 180.6134ms
+2025-11-19 14:49:37.060 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-19 14:49:37.062 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 201.8814ms
+2025-11-19 14:50:36.517 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Video?Title=A%20bird%20eates%20a%20bread&Description=A%20bird%20eates%20a%20bread.%20Its%20very%20cute - multipart/form-data; boundary=----geckoformboundarye95db8322869571ee03ca91b45d38b78 5131797
+2025-11-19 14:50:36.530 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.CreateVideoAsync (WebApp)'
+2025-11-19 14:50:36.583 +05:00 [INF] Route matched with {action = "CreateVideo", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] CreateVideoAsync(Domain.DTOs.Video.CreateVideoDto) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-19 14:50:36.749 +05:00 [INF] User 30f1cdac-67d2-46fe-b90a-c4ae3f13f09b tries to upload a new video
+2025-11-19 14:50:36.765 +05:00 [INF] Saved the video to wwwroot/videos
+2025-11-19 14:50:36.986 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Videos" ("Id", "AuthorId", "CreatedAt", "Description", "IsDeleted", "Title", "UpdatedAt", "VideoPath")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2025-11-19 14:50:37.169 +05:00 [INF] Redis : Deleted data from cache key: Videos
+2025-11-19 14:50:37.173 +05:00 [INF] Video created successfully. Title=A bird eates a bread, User=30f1cdac-67d2-46fe-b90a-c4ae3f13f09b
+2025-11-19 14:50:37.176 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:50:37.178 +05:00 [INF] Executed action WebApp.Controllers.VideoController.CreateVideoAsync (WebApp) in 578.7534ms
+2025-11-19 14:50:37.180 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.CreateVideoAsync (WebApp)'
+2025-11-19 14:50:37.184 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Video?Title=A%20bird%20eates%20a%20bread&Description=A%20bird%20eates%20a%20bread.%20Its%20very%20cute - 200 null application/json; charset=utf-8 666.8429ms
+2025-11-19 14:50:51.728 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Video - null null
+2025-11-19 14:50:51.740 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-19 14:50:51.760 +05:00 [INF] Route matched with {action = "GetAllVideos", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.Video.GetVideoDto]]] GetAllVideosAsync(Domain.Filters.VideoFilter) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-19 14:50:51.793 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get 10 video
+2025-11-19 14:50:51.867 +05:00 [WRN] Redis: There is no data in the cache for this key: Videos
+2025-11-19 14:50:51.912 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AuthorId", v."CreatedAt", v."Description", v."IsDeleted", v."Title", v."UpdatedAt", v."VideoPath"
+FROM "Videos" AS v
+WHERE NOT (v."IsDeleted")
+2025-11-19 14:50:51.940 +05:00 [INF] Redis : Added new data to cache by key: Videos, expiration time before : "2025-11-19T14:55:51.9169940+05:00"
+2025-11-19 14:50:51.972 +05:00 [INF] Found 2 elements
+2025-11-19 14:50:51.975 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.Video.GetVideoDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:50:51.983 +05:00 [INF] Executed action WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp) in 218.7881ms
+2025-11-19 14:50:51.991 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-19 14:50:51.994 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Video - 200 null application/json; charset=utf-8 266.9054ms
+2025-11-19 14:51:31.991 +05:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5157/api/Video?id=019a96ba-64fe-7c8d-bffe-e6a3d75966b7 - null null
+2025-11-19 14:51:31.997 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.DeleteVideoAsync (WebApp)'
+2025-11-19 14:51:32.006 +05:00 [INF] Route matched with {action = "DeleteVideo", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] DeleteVideoAsync(System.Guid) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-19 14:51:32.072 +05:00 [INF] User 30f1cdac-67d2-46fe-b90a-c4ae3f13f09b tries to delete the video with id "019a96ba-64fe-7c8d-bffe-e6a3d75966b7"
+2025-11-19 14:51:32.102 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__videoId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AuthorId", v."CreatedAt", v."Description", v."IsDeleted", v."Title", v."UpdatedAt", v."VideoPath"
+FROM "Videos" AS v
+WHERE v."Id" = @__videoId_0 AND NOT (v."IsDeleted")
+LIMIT 1
+2025-11-19 14:51:32.141 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-19 14:51:32.152 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:51:32.239 +05:00 [INF] Executed DbCommand (38ms) [Parameters=[@p0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "Videos"
+WHERE "Id" = @p0;
+2025-11-19 14:51:32.271 +05:00 [INF] Redis : Deleted data from cache key: Videos
+2025-11-19 14:51:32.273 +05:00 [INF] Deleted video file videos/0703a2da-4ec9-4bb1-a75d-e6e112638c11.mp4
+2025-11-19 14:51:32.275 +05:00 [INF] Deleted video "019a96ba-64fe-7c8d-bffe-e6a3d75966b7" successfully
+2025-11-19 14:51:32.280 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:51:32.283 +05:00 [INF] Executed action WebApp.Controllers.VideoController.DeleteVideoAsync (WebApp) in 263.6843ms
+2025-11-19 14:51:32.286 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.DeleteVideoAsync (WebApp)'
+2025-11-19 14:51:32.289 +05:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5157/api/Video?id=019a96ba-64fe-7c8d-bffe-e6a3d75966b7 - 200 null application/json; charset=utf-8 296.2969ms
+2025-11-19 14:51:37.554 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Video - null null
+2025-11-19 14:51:37.559 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-19 14:51:37.572 +05:00 [INF] Route matched with {action = "GetAllVideos", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.Video.GetVideoDto]]] GetAllVideosAsync(Domain.Filters.VideoFilter) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-19 14:51:37.601 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get 10 video
+2025-11-19 14:51:37.608 +05:00 [WRN] Redis: There is no data in the cache for this key: Videos
+2025-11-19 14:51:37.620 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AuthorId", v."CreatedAt", v."Description", v."IsDeleted", v."Title", v."UpdatedAt", v."VideoPath"
+FROM "Videos" AS v
+WHERE NOT (v."IsDeleted")
+2025-11-19 14:51:37.625 +05:00 [INF] Redis : Added new data to cache by key: Videos, expiration time before : "2025-11-19T14:56:37.6236830+05:00"
+2025-11-19 14:51:37.639 +05:00 [INF] Found 1 elements
+2025-11-19 14:51:37.641 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.Video.GetVideoDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:51:37.652 +05:00 [INF] Executed action WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp) in 64.1443ms
+2025-11-19 14:51:37.663 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-19 14:51:37.670 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Video - 200 null application/json; charset=utf-8 115.6019ms
+2025-11-19 14:52:42.920 +05:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5157/api/Video - application/json 136
+2025-11-19 14:52:42.926 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.UpdateVideoAsync (WebApp)'
+2025-11-19 14:52:42.935 +05:00 [INF] Route matched with {action = "UpdateVideo", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] UpdateVideoAsync(Domain.DTOs.Video.UpdateVideoDto) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-19 14:52:42.961 +05:00 [INF] User 30f1cdac-67d2-46fe-b90a-c4ae3f13f09b tries to update the video with id "019a9b85-ed31-7295-a32a-401afae98e21"
+2025-11-19 14:52:42.988 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__updateDto_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AuthorId", v."CreatedAt", v."Description", v."IsDeleted", v."Title", v."UpdatedAt", v."VideoPath"
+FROM "Videos" AS v
+WHERE v."Id" = @__updateDto_Id_0 AND NOT (v."IsDeleted")
+LIMIT 1
+2025-11-19 14:52:42.993 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-19 14:52:43.006 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-19 14:52:43.027 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@p3='?' (DbType = Guid), @p0='?', @p1='?', @p2='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Videos" SET "Description" = @p0, "Title" = @p1, "UpdatedAt" = @p2
+WHERE "Id" = @p3;
+2025-11-19 14:52:43.042 +05:00 [INF] Redis : Deleted data from cache key: Videos
+2025-11-19 14:52:43.043 +05:00 [INF] Updated video A bird at a beach successfully
+2025-11-19 14:52:43.056 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:52:43.058 +05:00 [INF] Executed action WebApp.Controllers.VideoController.UpdateVideoAsync (WebApp) in 105.9778ms
+2025-11-19 14:52:43.075 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.UpdateVideoAsync (WebApp)'
+2025-11-19 14:52:43.078 +05:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5157/api/Video - 200 null application/json; charset=utf-8 156.2792ms
+2025-11-19 14:52:49.440 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Video - null null
+2025-11-19 14:52:49.447 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-19 14:52:49.450 +05:00 [INF] Route matched with {action = "GetAllVideos", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.Video.GetVideoDto]]] GetAllVideosAsync(Domain.Filters.VideoFilter) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-19 14:52:49.468 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get 10 video
+2025-11-19 14:52:49.470 +05:00 [WRN] Redis: There is no data in the cache for this key: Videos
+2025-11-19 14:52:49.472 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AuthorId", v."CreatedAt", v."Description", v."IsDeleted", v."Title", v."UpdatedAt", v."VideoPath"
+FROM "Videos" AS v
+WHERE NOT (v."IsDeleted")
+2025-11-19 14:52:49.484 +05:00 [INF] Redis : Added new data to cache by key: Videos, expiration time before : "2025-11-19T14:57:49.4837115+05:00"
+2025-11-19 14:52:49.487 +05:00 [INF] Found 1 elements
+2025-11-19 14:52:49.491 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.Video.GetVideoDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:52:49.493 +05:00 [INF] Executed action WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp) in 25.9207ms
+2025-11-19 14:52:49.498 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-19 14:52:49.500 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Video - 200 null application/json; charset=utf-8 59.7371ms
+2025-11-19 14:53:01.303 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Video - null null
+2025-11-19 14:53:01.307 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-19 14:53:01.310 +05:00 [INF] Route matched with {action = "GetAllVideos", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.Video.GetVideoDto]]] GetAllVideosAsync(Domain.Filters.VideoFilter) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-19 14:53:01.322 +05:00 [INF] User 30f1cdac-67d2-46fe-b90a-c4ae3f13f09b tries to get 10 video
+2025-11-19 14:53:01.335 +05:00 [INF] Redis: Data retrieved from cache key: Videos
+2025-11-19 14:53:01.349 +05:00 [INF] Found 1 elements
+2025-11-19 14:53:01.351 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.Video.GetVideoDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-19 14:53:01.354 +05:00 [INF] Executed action WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp) in 34.5723ms
+2025-11-19 14:53:01.372 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-19 14:53:01.373 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Video - 200 null application/json; charset=utf-8 70.523ms
+2025-11-19 14:53:07.837 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Video/019a9b85-ed31-7295-a32a-401afae98e21 - null null
+2025-11-19 14:53:07.842 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.GetVideoByIdAsync (WebApp)'
+2025-11-19 14:53:07.855 +05:00 [INF] Route matched with {action = "GetVideoById", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[Domain.DTOs.Video.GetVideoDto]] GetVideoByIdAsync(System.Guid) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-19 14:53:07.869 +05:00 [INF] User 30f1cdac-67d2-46fe-b90a-c4ae3f13f09b tries to get the video with id "019a9b85-ed31-7295-a32a-401afae98e21"
+2025-11-19 14:53:07.887 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__videoId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AuthorId", v."CreatedAt", v."Description", v."IsDeleted", v."Title", v."UpdatedAt", v."VideoPath"
+FROM "Videos" AS v
+WHERE v."Id" = @__videoId_0 AND NOT (v."IsDeleted")
+LIMIT 1
+2025-11-19 14:53:07.901 +05:00 [INF] Got the video "019a9b85-ed31-7295-a32a-401afae98e21" successfully
+2025-11-19 14:53:07.903 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[Domain.DTOs.Video.GetVideoDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-19 14:53:07.906 +05:00 [INF] Executed action WebApp.Controllers.VideoController.GetVideoByIdAsync (WebApp) in 41.4365ms
+2025-11-19 14:53:07.917 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.GetVideoByIdAsync (WebApp)'
+2025-11-19 14:53:07.921 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Video/019a9b85-ed31-7295-a32a-401afae98e21 - 200 null application/json; charset=utf-8 84.1166ms
+2025-11-19 14:53:18.409 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Video/019a9b85-ed31-7295-a32a-401afae98e11 - null null
+2025-11-19 14:53:18.413 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.GetVideoByIdAsync (WebApp)'
+2025-11-19 14:53:18.415 +05:00 [INF] Route matched with {action = "GetVideoById", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[Domain.DTOs.Video.GetVideoDto]] GetVideoByIdAsync(System.Guid) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-19 14:53:18.421 +05:00 [INF] User 30f1cdac-67d2-46fe-b90a-c4ae3f13f09b tries to get the video with id "019a9b85-ed31-7295-a32a-401afae98e11"
+2025-11-19 14:53:18.429 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__videoId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AuthorId", v."CreatedAt", v."Description", v."IsDeleted", v."Title", v."UpdatedAt", v."VideoPath"
+FROM "Videos" AS v
+WHERE v."Id" = @__videoId_0 AND NOT (v."IsDeleted")
+LIMIT 1
+2025-11-19 14:53:18.442 +05:00 [WRN] Not found the video with id "019a9b85-ed31-7295-a32a-401afae98e11"
+2025-11-19 14:53:18.444 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[Domain.DTOs.Video.GetVideoDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-19 14:53:18.446 +05:00 [INF] Executed action WebApp.Controllers.VideoController.GetVideoByIdAsync (WebApp) in 25.8906ms
+2025-11-19 14:53:18.450 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.GetVideoByIdAsync (WebApp)'
+2025-11-19 14:53:18.451 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Video/019a9b85-ed31-7295-a32a-401afae98e11 - 200 null application/json; charset=utf-8 42.2406ms
+2025-11-19 14:55:34.103 +05:00 [INF] Application is shutting down...

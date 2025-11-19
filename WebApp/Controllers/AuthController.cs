@@ -1,6 +1,7 @@
 ﻿using Domain.DTOs.Auth;
 using Infrastructure.Interfaces;
 using Infrastructure.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
@@ -9,10 +10,12 @@ namespace WebApp.Controllers;
 [Route("api/[controller]")]
 public class AuthController(IAuthService authService) : ControllerBase
 {
+    [AllowAnonymous]
     [HttpPost("register")]
     public async Task<Response<string>> Register(RegisterDto model)
         => await authService.RegisterUserAsync(model);
     
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<Response<string>> Login(LoginDto model)
         => await authService.LoginAsync(model);
