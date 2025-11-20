@@ -65,7 +65,7 @@ public class AuthService(
     {
         Log.Information("Trying to login user {emailOrUsername}", loginDto.EmailOrNickName);
         var user = await context.Users.FirstOrDefaultAsync(u =>
-            u.Email == loginDto.EmailOrNickName || u.Nickname == loginDto.EmailOrNickName);
+            (u.Email == loginDto.EmailOrNickName && !u.IsDeleted) || (u.Nickname == loginDto.EmailOrNickName && !u.IsDeleted));
 
         if (user is null)
         {

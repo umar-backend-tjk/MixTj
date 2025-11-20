@@ -10,6 +10,7 @@ public class DataContext(DbContextOptions options) : IdentityDbContext<AppUser>(
     public DbSet<Video> Videos { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Like> Likes { get; set; }
+    public DbSet<NewsStats> NewsStats { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -8,5 +8,5 @@ public class Comment : BaseEntity
     public Guid? NewsId { get; set; }
     public Guid? VideoId { get; set; }
     
-    public List<Like> Likes = [];
+    public List<Like> Likes { get; set; } = new List<Like>();
 }

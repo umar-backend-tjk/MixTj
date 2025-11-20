@@ -14,6 +14,6 @@ public interface INewsService
     Task<Response<string>> UpdateNewsAsync(UpdateNewsDto dto);
     Task<Response<string>> DeleteNewsAsync(Guid id);
     Task<Response<string>> AddLikeAsync(AddLikeDto dto);
-    Task<Response<List<GetLikeDto>>> GetAllLikes(Guid targetId);
-    Task<Response<string>> RemoveLike(Guid targetId);
+    Task<Response<List<GetLikeDto>>> GetAllLikesAsync(Guid targetId);
+    Task<Response<string>> RemoveLikeAsync(Guid targetId);
 }

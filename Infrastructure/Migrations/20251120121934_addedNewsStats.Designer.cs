@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20251120121934_addedNewsStats")]
+    partial class addedNewsStats
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,10 +145,6 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NewsId");
-
-                    b.HasIndex("VideoId");
-
                     b.ToTable("Comments");
                 });
 
@@ -153,12 +152,6 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("CommentId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("NewsId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("TargetId")
@@ -171,16 +164,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("VideoId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("NewsId");
-
-                    b.HasIndex("VideoId");
 
                     b.HasIndex("UserId", "TargetId")
                         .IsUnique();
@@ -232,17 +216,8 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("LastCalculatedAt")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<Guid>("NewsId")
                         .HasColumnType("uuid");
-
-                    b.Property<int>("TotalDislikes")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TotalLikes")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -417,32 +392,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Comment", b =>
-                {
-                    b.HasOne("Domain.Entities.News", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("NewsId");
-
-                    b.HasOne("Domain.Entities.Video", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("VideoId");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Like", b =>
-                {
-                    b.HasOne("Domain.Entities.Comment", null)
-                        .WithMany("Likes")
-                        .HasForeignKey("CommentId");
-
-                    b.HasOne("Domain.Entities.News", null)
-                        .WithMany("Likes")
-                        .HasForeignKey("NewsId");
-
-                    b.HasOne("Domain.Entities.Video", null)
-                        .WithMany("Likes")
-                        .HasForeignKey("VideoId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -492,25 +441,6 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.Comment", b =>
-                {
-                    b.Navigation("Likes");
-                });
-
-            modelBuilder.Entity("Domain.Entities.News", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Likes");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Video", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
         }

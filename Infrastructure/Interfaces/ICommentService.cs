@@ -11,6 +11,6 @@ public interface ICommentService
     Task<Response<string>> UpdateCommentAsync(UpdateCommentDto dto);
     Task<Response<string>> DeleteCommentAsync(Guid id);
     Task<Response<string>> AddLikeAsync(AddLikeDto dto);
-    Task<Response<List<GetLikeDto>>> GetAllLikes(Guid targetId);
-    Task<Response<string>> RemoveLike(Guid targetId);
+    Task<Response<List<GetLikeDto>>> GetAllLikesAsync(Guid targetId);
+    Task<Response<string>> RemoveLikeAsync(Guid targetId);
 }

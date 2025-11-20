@@ -1,5 +1,8 @@
 using System.Text;
 using Domain.Entities;
+using Hangfire;
+using Hangfire.PostgreSql;
+using Infrastructure.BackgroundTasks;
 using Infrastructure.Caching;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
@@ -33,6 +36,10 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddHangfire(config =>
+    config.UsePostgreSqlStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddHangfireServer();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -82,7 +89,6 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<INewsService, NewsService>();
 builder.Services.AddScoped<IVideoService, VideoService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
-builder.Services.AddScoped<ILikeService>();
 
 builder.Services.AddScoped<IFileStorageService>(
     sp => new FileStorageService(builder.Environment.ContentRootPath));
@@ -115,12 +121,18 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var service = scope.ServiceProvider;
-    var context = service.GetRequiredService<DataContext>();
-    var seed = service.GetRequiredService<Seeder>();
+    var serviceProvider = scope.ServiceProvider;
+    var context = serviceProvider.GetRequiredService<DataContext>();
+    var seed = serviceProvider.GetRequiredService<Seeder>();
     await context.Database.MigrateAsync();
     await seed.SeedRoles();
     await seed.SeedAdmin();
+    var recurringJobManager = serviceProvider.GetRequiredService<IRecurringJobManager>();
+    
+    recurringJobManager.AddOrUpdate<CalculateNewsLikesTask>(
+        "calculate-news-likes",
+        service => service.CalculateNewsLikes(),
+        Cron.Minutely);
 }
 
 if (app.Environment.IsDevelopment())

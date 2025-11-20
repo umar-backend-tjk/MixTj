@@ -278,7 +278,7 @@ public class NewsService(
         }
     }
 
-    public async Task<Response<List<GetLikeDto>>> GetAllLikes(Guid targetId)
+    public async Task<Response<List<GetLikeDto>>> GetAllLikesAsync(Guid targetId)
     {
         try
         {
@@ -304,7 +304,7 @@ public class NewsService(
         }
     }
 
-    public async Task<Response<string>> RemoveLike(Guid targetId)
+    public async Task<Response<string>> RemoveLikeAsync(Guid targetId)
     {
         try
         {
@@ -323,6 +323,7 @@ public class NewsService(
                 return new Response<string>(HttpStatusCode.NotFound, "Like not found");
 
             existingNews.Likes.Remove(like);
+            context.Likes.Remove(like);
 
             var result = await context.SaveChangesAsync();
 

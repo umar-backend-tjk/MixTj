@@ -305,7 +305,7 @@ public class VideoService(
         }
     }
 
-    public async Task<Response<List<GetLikeDto>>> GetAllLikes(Guid targetId)
+    public async Task<Response<List<GetLikeDto>>> GetAllLikesAsync(Guid targetId)
     {
         try
         {
@@ -332,7 +332,7 @@ public class VideoService(
         }
     }
 
-    public async Task<Response<string>> RemoveLike(Guid targetId)
+    public async Task<Response<string>> RemoveLikeAsync(Guid targetId)
     {
         try
         {

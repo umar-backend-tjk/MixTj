@@ -7,6 +7,6 @@ public class Video : BaseEntity
     public required string VideoPath { get; set; }
     public required string AuthorId  { get; set; }
 
-    public List<Comment> Comments = [];
-    public List<Like> Likes = [];
+    public List<Comment> Comments { get; set; } = new List<Comment>();
+    public List<Like> Likes { get; set; } = new List<Like>();
 }

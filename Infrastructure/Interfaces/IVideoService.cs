@@ -13,6 +13,6 @@ public interface IVideoService
     Task<Response<string>> UpdateVideoAsync(UpdateVideoDto updateDto);
     Task<Response<string>> DeleteVideoAsync(Guid videoId);
     Task<Response<string>> AddLikeAsync(AddLikeDto dto);
-    Task<Response<List<GetLikeDto>>> GetAllLikes(Guid targetId);
-    Task<Response<string>> RemoveLike(Guid targetId);
+    Task<Response<List<GetLikeDto>>> GetAllLikesAsync(Guid targetId);
+    Task<Response<string>> RemoveLikeAsync(Guid targetId);
 }

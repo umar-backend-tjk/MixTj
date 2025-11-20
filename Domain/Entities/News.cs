@@ -10,6 +10,6 @@ public class News : BaseEntity
     public Category Category { get; set; }
     public string[]? Tags { get; set; } 
     
-    public List<Comment> Comments = [];
-    public List<Like> Likes = [];
+    public List<Comment> Comments { get; set; } = new List<Comment>();
+    public List<Like> Likes { get; set; } = new List<Like>();
 }

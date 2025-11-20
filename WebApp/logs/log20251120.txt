@@ -1,0 +1,1663 @@
+2025-11-20 17:19:53.044 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 17:19:55.472 +05:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:19:56.129 +05:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 17:19:56.160 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 17:19:56.168 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:19:56.183 +05:00 [INF] Applying migration '20251120121934_addedNewsStats'.
+2025-11-20 17:19:56.268 +05:00 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Likes" (
+    "Id" uuid NOT NULL,
+    "UserId" text NOT NULL,
+    "TargetId" uuid NOT NULL,
+    "Type" integer NOT NULL,
+    CONSTRAINT "PK_Likes" PRIMARY KEY ("Id")
+);
+2025-11-20 17:19:56.283 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "NewsStats" (
+    "Id" uuid NOT NULL,
+    "NewsId" uuid NOT NULL,
+    CONSTRAINT "PK_NewsStats" PRIMARY KEY ("Id")
+);
+2025-11-20 17:19:56.331 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_Likes_UserId_TargetId" ON "Likes" ("UserId", "TargetId");
+2025-11-20 17:19:56.350 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20251120121934_addedNewsStats', '9.0.3');
+2025-11-20 17:19:56.732 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 17:19:56.949 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 17:33:03.312 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 17:33:04.746 +05:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:33:05.253 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 17:33:05.284 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 17:33:05.293 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:33:05.303 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 17:33:05.674 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 17:33:05.831 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 17:33:06.003 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 17:33:07.208 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 17:33:08.055 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 17:33:08.090 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 17:33:08.093 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 17:33:08.096 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 17:33:08.097 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 17:33:08.098 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 17:33:08.099 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 17:33:08.118 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 17:33:08.119 +05:00 [INF] Hosting environment: Development
+2025-11-20 17:33:08.121 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 17:33:08.156 +05:00 [INF] Server desktop-qtpfn7c:7256:6dde8d00 successfully announced in 29,5931 ms
+2025-11-20 17:33:08.161 +05:00 [INF] Server desktop-qtpfn7c:7256:6dde8d00 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 17:33:08.481 +05:00 [INF] Server desktop-qtpfn7c:7256:6dde8d00 all the dispatchers started
+2025-11-20 17:33:41.246 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/ - null null
+2025-11-20 17:33:41.396 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/ - 404 0 null 150.6018ms
+2025-11-20 17:33:41.426 +05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5157/, Response status code: 404
+2025-11-20 17:33:46.390 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/ - null null
+2025-11-20 17:33:46.519 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/ - 301 0 null 129.0993ms
+2025-11-20 17:33:46.528 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/index.html - null null
+2025-11-20 17:33:46.709 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/swagger-ui.css - null null
+2025-11-20 17:33:46.741 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/swagger-ui.css - 499 155175 text/css 32.1601ms
+2025-11-20 17:33:46.827 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/index.html - 499 null text/html;charset=utf-8 298.6246ms
+2025-11-20 17:33:46.911 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - null null
+2025-11-20 17:33:46.920 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - 499 628 image/png 9.1309ms
+2025-11-20 17:33:46.974 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - null null
+2025-11-20 17:33:47.402 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 427.7747ms
+2025-11-20 17:34:04.919 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 60
+2025-11-20 17:34:04.957 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 17:34:05.067 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-20 17:34:05.341 +05:00 [INF] Trying to login user dovud2211
+2025-11-20 17:34:05.468 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-20 17:34:05.903 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 17:34:05.974 +05:00 [INF] User dovud2211 logged in
+2025-11-20 17:34:05.995 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 17:34:06.016 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 932.5043ms
+2025-11-20 17:34:06.019 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 17:34:06.041 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 1122.5674ms
+2025-11-20 17:34:26.576 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/ - null null
+2025-11-20 17:34:26.585 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/ - 301 0 null 8.4855ms
+2025-11-20 17:34:26.594 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/index.html - null null
+2025-11-20 17:34:26.598 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/index.html - 200 null text/html;charset=utf-8 4.695ms
+2025-11-20 17:34:26.931 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - null null
+2025-11-20 17:34:27.006 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 74.4556ms
+2025-11-20 17:34:43.085 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 58
+2025-11-20 17:34:43.107 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 17:34:43.129 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-20 17:34:43.167 +05:00 [INF] Trying to login user Admin
+2025-11-20 17:34:43.399 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-20 17:34:43.824 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 17:34:43.828 +05:00 [INF] User Admin logged in
+2025-11-20 17:34:43.831 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 17:34:43.835 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 689.6254ms
+2025-11-20 17:34:43.846 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 17:34:43.851 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 765.6481ms
+2025-11-20 17:35:29.010 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News - null null
+2025-11-20 17:35:29.230 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 17:35:29.272 +05:00 [INF] Route matched with {action = "GetAllNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.News.GetNewsDto]]] GetAllNewsAsync(Domain.Filters.NewsFilter) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 17:35:29.368 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get all the news
+2025-11-20 17:35:29.868 +05:00 [WRN] Redis: There is no data in the cache for this key: News
+2025-11-20 17:35:29.922 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE NOT (n."IsDeleted")
+2025-11-20 17:35:30.105 +05:00 [INF] Redis : Added new data to cache by key: News, expiration time before : "2025-11-20T17:40:30.0255580+05:00"
+2025-11-20 17:35:30.207 +05:00 [INF] Found 4 elements
+2025-11-20 17:35:30.214 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.News.GetNewsDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 17:35:30.230 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp) in 954.4452ms
+2025-11-20 17:35:30.235 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 17:35:30.237 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News - 200 null application/json; charset=utf-8 1226.4159ms
+2025-11-20 17:36:01.732 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Comments?newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - null null
+2025-11-20 17:36:01.748 +05:00 [INF] Executing endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-20 17:36:01.764 +05:00 [INF] Route matched with {action = "GetAllComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.Collections.Generic.List`1[Domain.DTOs.Comment.GetCommentDto]]] GetAllCommentsAsync(System.Nullable`1[System.Guid], System.Nullable`1[System.Guid]) on controller WebApp.Controllers.CommentsController (WebApp).
+2025-11-20 17:36:01.835 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__newsId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE n."Id" = @__newsId_0 AND NOT (n."IsDeleted")
+LIMIT 1
+2025-11-20 17:36:01.946 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__newsId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Comments" AS c
+WHERE NOT (c."IsDeleted") AND c."NewsId" = @__newsId_0
+2025-11-20 17:36:01.981 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__newsId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CreatedAt", c."IsDeleted", c."NewsId", c."Reply", c."Text", c."UpdatedAt", c."UserId", c."VideoId"
+FROM "Comments" AS c
+WHERE NOT (c."IsDeleted") AND c."NewsId" = @__newsId_0
+2025-11-20 17:36:02.044 +05:00 [INF] Found 1 comments
+2025-11-20 17:36:02.047 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.Collections.Generic.List`1[[Domain.DTOs.Comment.GetCommentDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 17:36:02.075 +05:00 [INF] Executed action WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp) in 305.7901ms
+2025-11-20 17:36:02.078 +05:00 [INF] Executed endpoint 'WebApp.Controllers.CommentsController.GetAllCommentsAsync (WebApp)'
+2025-11-20 17:36:02.081 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Comments?newsId=019a9b7a-78ad-7770-806c-684b194fd6a5 - 200 null application/json; charset=utf-8 348.9906ms
+2025-11-20 17:37:04.745 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/019a9b7a-78ad-7770-806c-684b194fd6a5/likes - application/json 69
+2025-11-20 17:37:04.763 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 17:37:04.789 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 17:37:04.902 +05:00 [ERR] Unexpected error in method AddLikeAsync
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+AddLikeDto -> Like
+Domain.DTOs.Like.AddLikeDto -> Domain.Entities.Like
+   at lambda_method392(Closure, Object, Like, ResolutionContext)
+   at Infrastructure.Services.NewsService.AddLikeAsync(AddLikeDto dto) in D:\.NET projects\MixTj\Infrastructure\Services\NewsService.cs:line 246
+2025-11-20 17:37:04.939 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 17:37:04.951 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 137.696ms
+2025-11-20 17:37:04.956 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 17:37:04.961 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/019a9b7a-78ad-7770-806c-684b194fd6a5/likes - 200 null application/json; charset=utf-8 215.489ms
+2025-11-20 17:37:16.409 +05:00 [INF] Server desktop-qtpfn7c:7256:6dde8d00 caught stopping signal...
+2025-11-20 17:37:16.415 +05:00 [INF] Application is shutting down...
+2025-11-20 17:37:16.425 +05:00 [INF] Server desktop-qtpfn7c:7256:6dde8d00 All dispatchers stopped
+2025-11-20 17:37:16.440 +05:00 [INF] Server desktop-qtpfn7c:7256:6dde8d00 successfully reported itself as stopped in 7,1954 ms
+2025-11-20 17:37:16.448 +05:00 [INF] Server desktop-qtpfn7c:7256:6dde8d00 has been stopped in total 33,4339 ms
+2025-11-20 17:37:56.238 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 17:37:57.932 +05:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:37:58.656 +05:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 17:37:58.701 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 17:37:58.709 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:37:58.725 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 17:37:59.075 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 17:37:59.255 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 17:37:59.373 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 17:37:59.404 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 17:37:59.935 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 17:37:59.961 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 17:37:59.968 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 17:37:59.975 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 17:37:59.988 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 17:37:59.991 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 17:37:59.992 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 17:38:00.029 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 17:38:00.046 +05:00 [INF] Hosting environment: Development
+2025-11-20 17:38:00.086 +05:00 [INF] Server desktop-qtpfn7c:3060:5c6f82d1 successfully announced in 42,6182 ms
+2025-11-20 17:38:00.087 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 17:38:00.109 +05:00 [INF] Server desktop-qtpfn7c:3060:5c6f82d1 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 17:38:00.686 +05:00 [INF] Server desktop-qtpfn7c:3060:5c6f82d1 all the dispatchers started
+2025-11-20 17:38:04.588 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/019a9b7a-78ad-7770-806c-684b194fd6a5/likes - application/json 69
+2025-11-20 17:38:04.849 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 17:38:04.890 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 17:38:05.220 +05:00 [ERR] Unexpected error in method AddLikeAsync
+System.InvalidOperationException: The expression 'n.Likes' is invalid inside an 'Include' operation, since it does not represent a property access: 't => t.MyProperty'. To target navigations declared on derived types, use casting ('t => ((Derived)t).MyProperty') or the 'as' operator ('t => (t as Derived).MyProperty'). Collection navigation access can be filtered by composing Where, OrderBy(Descending), ThenBy(Descending), Skip or Take operations. For more information on including related data, see https://go.microsoft.com/fwlink/?LinkID=746393.
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.PopulateIncludeTree(IncludeTreeNode includeTreeNode, Expression expression, Boolean setLoaded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.ProcessInclude(NavigationExpansionExpression source, Expression expression, Boolean thenInclude, Boolean setLoaded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.Expand(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.Process(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at Infrastructure.Services.NewsService.AddLikeAsync(AddLikeDto dto) in D:\.NET projects\MixTj\Infrastructure\Services\NewsService.cs:line 249
+2025-11-20 17:38:05.263 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 17:38:05.284 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 383.197ms
+2025-11-20 17:38:05.289 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 17:38:05.295 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/019a9b7a-78ad-7770-806c-684b194fd6a5/likes - 200 null application/json; charset=utf-8 708.298ms
+2025-11-20 17:43:17.878 +05:00 [INF] Server desktop-qtpfn7c:3060:5c6f82d1 caught stopping signal...
+2025-11-20 17:43:18.050 +05:00 [INF] Application is shutting down...
+2025-11-20 17:43:18.207 +05:00 [INF] Server desktop-qtpfn7c:3060:5c6f82d1 All dispatchers stopped
+2025-11-20 17:43:18.697 +05:00 [INF] Server desktop-qtpfn7c:3060:5c6f82d1 caught stopped signal...
+2025-11-20 17:43:19.239 +05:00 [INF] Server desktop-qtpfn7c:3060:5c6f82d1 successfully reported itself as stopped in 7,8783 ms
+2025-11-20 17:43:19.360 +05:00 [INF] Server desktop-qtpfn7c:3060:5c6f82d1 has been stopped in total 1310,675 ms
+2025-11-20 17:44:43.173 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 17:44:44.848 +05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:44:45.393 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 17:44:45.418 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 17:44:45.424 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:44:45.433 +05:00 [INF] Applying migration '20251120124428_fixedEntities'.
+2025-11-20 17:44:45.463 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Likes" ADD "CommentId" uuid;
+2025-11-20 17:44:45.471 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Likes" ADD "NewsId" uuid;
+2025-11-20 17:44:45.477 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Likes" ADD "VideoId" uuid;
+2025-11-20 17:44:45.493 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Likes_CommentId" ON "Likes" ("CommentId");
+2025-11-20 17:44:45.500 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Likes_NewsId" ON "Likes" ("NewsId");
+2025-11-20 17:44:45.535 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Likes_VideoId" ON "Likes" ("VideoId");
+2025-11-20 17:44:45.550 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Comments_NewsId" ON "Comments" ("NewsId");
+2025-11-20 17:44:45.561 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Comments_VideoId" ON "Comments" ("VideoId");
+2025-11-20 17:44:45.582 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Comments" ADD CONSTRAINT "FK_Comments_News_NewsId" FOREIGN KEY ("NewsId") REFERENCES "News" ("Id");
+2025-11-20 17:44:45.597 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Comments" ADD CONSTRAINT "FK_Comments_Videos_VideoId" FOREIGN KEY ("VideoId") REFERENCES "Videos" ("Id");
+2025-11-20 17:44:45.718 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Likes" ADD CONSTRAINT "FK_Likes_Comments_CommentId" FOREIGN KEY ("CommentId") REFERENCES "Comments" ("Id");
+2025-11-20 17:44:45.746 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Likes" ADD CONSTRAINT "FK_Likes_News_NewsId" FOREIGN KEY ("NewsId") REFERENCES "News" ("Id");
+2025-11-20 17:44:45.759 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Likes" ADD CONSTRAINT "FK_Likes_Videos_VideoId" FOREIGN KEY ("VideoId") REFERENCES "Videos" ("Id");
+2025-11-20 17:44:45.766 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20251120124428_fixedEntities', '9.0.3');
+2025-11-20 17:44:46.158 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 17:44:46.336 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 17:44:46.496 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 17:44:46.521 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 17:44:47.070 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 17:44:47.078 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 17:44:47.080 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 17:44:47.082 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 17:44:47.084 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 17:44:47.086 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 17:44:47.087 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 17:44:47.109 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 17:44:47.112 +05:00 [INF] Hosting environment: Development
+2025-11-20 17:44:47.115 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 17:44:47.163 +05:00 [INF] Server desktop-qtpfn7c:13368:d8471874 successfully announced in 47,6705 ms
+2025-11-20 17:44:47.174 +05:00 [INF] Server desktop-qtpfn7c:13368:d8471874 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 17:44:47.561 +05:00 [INF] Server desktop-qtpfn7c:13368:d8471874 all the dispatchers started
+2025-11-20 17:45:08.073 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/019a9b7a-78ad-7770-806c-684b194fd6a5/likes - application/json 69
+2025-11-20 17:45:08.321 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 17:45:08.350 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 17:45:08.909 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 17:45:09.060 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 17:45:09.346 +05:00 [INF] Executed DbCommand (29ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Likes" ("Id", "CommentId", "NewsId", "TargetId", "Type", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-20 17:45:09.391 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 17:45:09.427 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 1065.8103ms
+2025-11-20 17:45:09.440 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 17:45:09.461 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/019a9b7a-78ad-7770-806c-684b194fd6a5/likes - 200 null application/json; charset=utf-8 1388.685ms
+2025-11-20 17:45:38.864 +05:00 [INF] Server desktop-qtpfn7c:13368:d8471874 caught stopping signal...
+2025-11-20 17:45:38.868 +05:00 [INF] Application is shutting down...
+2025-11-20 17:45:38.878 +05:00 [INF] Server desktop-qtpfn7c:13368:d8471874 All dispatchers stopped
+2025-11-20 17:45:38.898 +05:00 [INF] Server desktop-qtpfn7c:13368:d8471874 successfully reported itself as stopped in 11,918 ms
+2025-11-20 17:45:38.901 +05:00 [INF] Server desktop-qtpfn7c:13368:d8471874 has been stopped in total 33,5577 ms
+2025-11-20 17:50:47.750 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 17:50:49.158 +05:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:50:49.667 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 17:50:49.692 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 17:50:49.698 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 17:50:49.709 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 17:50:50.100 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 17:50:50.272 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 17:50:50.368 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 17:50:50.397 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 17:50:50.906 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 17:50:50.914 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 17:50:50.916 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 17:50:50.918 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 17:50:50.919 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 17:50:50.920 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 17:50:50.921 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 17:50:50.944 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 17:50:50.947 +05:00 [INF] Hosting environment: Development
+2025-11-20 17:50:50.949 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 17:50:51.004 +05:00 [INF] Server desktop-qtpfn7c:13552:000c1747 successfully announced in 52,8461 ms
+2025-11-20 17:50:51.009 +05:00 [INF] Server desktop-qtpfn7c:13552:000c1747 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 17:50:51.384 +05:00 [INF] Server desktop-qtpfn7c:13552:000c1747 all the dispatchers started
+2025-11-20 17:50:56.266 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/index.html - null null
+2025-11-20 17:50:56.407 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/index.html - 200 null text/html;charset=utf-8 139.7988ms
+2025-11-20 17:50:56.654 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - null null
+2025-11-20 17:50:56.680 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - 499 628 image/png 25.9301ms
+2025-11-20 17:50:56.766 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - null null
+2025-11-20 17:50:57.129 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 363.8688ms
+2025-11-20 17:51:55.029 +05:00 [INF] Server desktop-qtpfn7c:13552:000c1747 caught stopping signal...
+2025-11-20 17:51:55.034 +05:00 [INF] Application is shutting down...
+2025-11-20 17:51:55.042 +05:00 [INF] Server desktop-qtpfn7c:13552:000c1747 All dispatchers stopped
+2025-11-20 17:51:55.079 +05:00 [INF] Server desktop-qtpfn7c:13552:000c1747 successfully reported itself as stopped in 32,6667 ms
+2025-11-20 17:51:55.081 +05:00 [INF] Server desktop-qtpfn7c:13552:000c1747 has been stopped in total 46,8173 ms
+2025-11-20 18:03:04.417 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 18:03:06.295 +05:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:03:06.898 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 18:03:06.925 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 18:03:06.931 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:03:06.943 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 18:03:07.281 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 18:03:07.447 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 18:03:07.537 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 18:03:07.565 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 18:03:07.984 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 18:03:07.995 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 18:03:07.996 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 18:03:07.998 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 18:03:07.999 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 18:03:08.002 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 18:03:08.004 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 18:03:08.022 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 18:03:08.024 +05:00 [INF] Hosting environment: Development
+2025-11-20 18:03:08.025 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 18:03:08.062 +05:00 [INF] Server desktop-qtpfn7c:11436:73f181b4 successfully announced in 32,5229 ms
+2025-11-20 18:03:08.068 +05:00 [INF] Server desktop-qtpfn7c:11436:73f181b4 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 18:03:08.397 +05:00 [INF] Server desktop-qtpfn7c:11436:73f181b4 all the dispatchers started
+2025-11-20 18:03:08.599 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:03:08.5984815Z"
+2025-11-20 18:03:08.772 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:03:09.069 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "NewsId")
+VALUES (@p0, @p1);
+INSERT INTO "NewsStats" ("Id", "NewsId")
+VALUES (@p2, @p3);
+INSERT INTO "NewsStats" ("Id", "NewsId")
+VALUES (@p4, @p5);
+INSERT INTO "NewsStats" ("Id", "NewsId")
+VALUES (@p6, @p7);
+2025-11-20 18:03:09.099 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:10:04.834 +05:00 [INF] Server desktop-qtpfn7c:11436:73f181b4 caught stopping signal...
+2025-11-20 18:10:04.848 +05:00 [INF] Application is shutting down...
+2025-11-20 18:10:04.914 +05:00 [INF] Server desktop-qtpfn7c:11436:73f181b4 All dispatchers stopped
+2025-11-20 18:10:04.924 +05:00 [INF] Server desktop-qtpfn7c:11436:73f181b4 successfully reported itself as stopped in 4,6213 ms
+2025-11-20 18:10:04.926 +05:00 [INF] Server desktop-qtpfn7c:11436:73f181b4 has been stopped in total 77,71 ms
+2025-11-20 18:10:56.829 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 18:10:58.597 +05:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:10:59.220 +05:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 18:10:59.264 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 18:10:59.283 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:10:59.317 +05:00 [INF] Applying migration '20251120131040_fixedNewsStats'.
+2025-11-20 18:10:59.382 +05:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "NewsStats" ADD "LastCalculatedAt" timestamp with time zone NOT NULL DEFAULT TIMESTAMPTZ '-infinity';
+2025-11-20 18:10:59.399 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "NewsStats" ADD "TotalDislikes" integer NOT NULL DEFAULT 0;
+2025-11-20 18:10:59.418 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "NewsStats" ADD "TotalLikes" integer NOT NULL DEFAULT 0;
+2025-11-20 18:10:59.426 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20251120131040_fixedNewsStats', '9.0.3');
+2025-11-20 18:10:59.943 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 18:11:00.782 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 18:11:00.963 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 18:11:00.998 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 18:11:01.737 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 18:11:01.751 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 18:11:01.754 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 18:11:01.757 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 18:11:01.761 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 18:11:01.764 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 18:11:01.766 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 18:11:01.800 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 18:11:01.804 +05:00 [INF] Hosting environment: Development
+2025-11-20 18:11:01.815 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 18:11:01.876 +05:00 [INF] Server desktop-qtpfn7c:3256:327604b3 successfully announced in 64,9194 ms
+2025-11-20 18:11:01.886 +05:00 [INF] Server desktop-qtpfn7c:3256:327604b3 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 18:11:02.262 +05:00 [INF] Server desktop-qtpfn7c:3256:327604b3 all the dispatchers started
+2025-11-20 18:11:43.759 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 60
+2025-11-20 18:11:43.920 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:11:43.959 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-20 18:11:44.211 +05:00 [INF] Trying to login user dovud2211
+2025-11-20 18:11:44.351 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-20 18:11:44.723 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:11:44.794 +05:00 [INF] User dovud2211 logged in
+2025-11-20 18:11:44.813 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:11:44.850 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 879.1356ms
+2025-11-20 18:11:44.864 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:11:44.895 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 1136.5549ms
+2025-11-20 18:12:02.447 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/index.html - null null
+2025-11-20 18:12:02.655 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/index.html - 200 null text/html;charset=utf-8 207.6656ms
+2025-11-20 18:12:03.026 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - null null
+2025-11-20 18:12:03.042 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - 499 628 image/png 16.7246ms
+2025-11-20 18:12:03.092 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - null null
+2025-11-20 18:12:03.674 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 581.3989ms
+2025-11-20 18:12:21.138 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/index.html - null null
+2025-11-20 18:12:21.150 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/index.html - 200 null text/html;charset=utf-8 11.4627ms
+2025-11-20 18:12:21.541 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - null null
+2025-11-20 18:12:21.618 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 77.0764ms
+2025-11-20 18:12:44.485 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 58
+2025-11-20 18:12:44.499 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:12:44.502 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-20 18:12:44.533 +05:00 [INF] Trying to login user Admin
+2025-11-20 18:12:44.802 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-20 18:12:45.106 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:12:45.112 +05:00 [INF] User Admin logged in
+2025-11-20 18:12:45.116 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:12:45.120 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 605.5915ms
+2025-11-20 18:12:45.125 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:12:45.128 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 643.854ms
+2025-11-20 18:13:09.866 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News - null null
+2025-11-20 18:13:10.080 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 18:13:10.115 +05:00 [INF] Route matched with {action = "GetAllNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.News.GetNewsDto]]] GetAllNewsAsync(Domain.Filters.NewsFilter) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:13:10.221 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get all the news
+2025-11-20 18:13:10.628 +05:00 [WRN] Redis: There is no data in the cache for this key: News
+2025-11-20 18:13:10.679 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE NOT (n."IsDeleted")
+2025-11-20 18:13:10.908 +05:00 [INF] Redis : Added new data to cache by key: News, expiration time before : "2025-11-20T18:18:10.8207956+05:00"
+2025-11-20 18:13:10.987 +05:00 [INF] Found 4 elements
+2025-11-20 18:13:10.994 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.News.GetNewsDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:13:11.026 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp) in 895.1445ms
+2025-11-20 18:13:11.038 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 18:13:11.041 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News - 200 null application/json; charset=utf-8 1175.4284ms
+2025-11-20 18:13:32.777 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:13:32.855 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:13:32.871 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:13:33.075 +05:00 [INF] Executed DbCommand (23ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:13:33.186 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:13:33.197 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:13:33.201 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 325.9568ms
+2025-11-20 18:13:33.205 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:13:33.208 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 430.6116ms
+2025-11-20 18:13:49.746 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:13:49.780 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:13:49.788 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:13:49.908 +05:00 [INF] Executed DbCommand (18ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:13:49.921 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:13:50.213 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Likes" ("Id", "CommentId", "NewsId", "TargetId", "Type", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-20 18:13:50.238 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:13:50.241 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 434.2855ms
+2025-11-20 18:13:50.250 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:13:50.252 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 506.4744ms
+2025-11-20 18:14:00.889 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:14:00.912 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:14:00.917 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:14:00.966 +05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:14:01.038 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:14:01.049 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:14:01.051 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 118.9821ms
+2025-11-20 18:14:01.058 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:14:01.064 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 175.02ms
+2025-11-20 18:14:13.956 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News/019a91d3-ebea-7e45-bc3c-eeb2a22880df/likes - null null
+2025-11-20 18:14:13.971 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllLikesAsync (WebApp)'
+2025-11-20 18:14:14.031 +05:00 [INF] Route matched with {action = "GetAllLikes", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.Collections.Generic.List`1[Domain.DTOs.Like.GetLikeDto]]] GetAllLikesAsync(System.Guid) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:14:14.114 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__targetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__targetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:14:14.143 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.Collections.Generic.List`1[[Domain.DTOs.Like.GetLikeDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:14:14.153 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllLikesAsync (WebApp) in 108.8758ms
+2025-11-20 18:14:14.165 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllLikesAsync (WebApp)'
+2025-11-20 18:14:14.167 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News/019a91d3-ebea-7e45-bc3c-eeb2a22880df/likes - 200 null application/json; charset=utf-8 211.3314ms
+2025-11-20 18:14:55.731 +05:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5157/api/News/019aa166-56e0-760a-b42e-d68255b70fa4/likes - null null
+2025-11-20 18:14:55.742 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.RemoveLikeAsync (WebApp)'
+2025-11-20 18:14:55.757 +05:00 [INF] Route matched with {action = "RemoveLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] RemoveLikeAsync(System.Guid) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:14:55.811 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__targetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__targetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:14:55.821 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:14:55.826 +05:00 [INF] Executed action WebApp.Controllers.NewsController.RemoveLikeAsync (WebApp) in 48.103ms
+2025-11-20 18:14:55.835 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.RemoveLikeAsync (WebApp)'
+2025-11-20 18:14:55.839 +05:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5157/api/News/019aa166-56e0-760a-b42e-d68255b70fa4/likes - 200 null application/json; charset=utf-8 107.1982ms
+2025-11-20 18:15:15.092 +05:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5157/api/News/019a91d3-ebea-7e45-bc3c-eeb2a22880df/likes - null null
+2025-11-20 18:15:15.154 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.RemoveLikeAsync (WebApp)'
+2025-11-20 18:15:15.205 +05:00 [INF] Route matched with {action = "RemoveLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] RemoveLikeAsync(System.Guid) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:15:15.230 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__targetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__targetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:15:15.329 +05:00 [INF] Executed DbCommand (34ms) [Parameters=[@p0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "Likes"
+WHERE "Id" = @p0;
+2025-11-20 18:15:15.348 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:15:15.353 +05:00 [INF] Executed action WebApp.Controllers.NewsController.RemoveLikeAsync (WebApp) in 134.9562ms
+2025-11-20 18:15:15.366 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.RemoveLikeAsync (WebApp)'
+2025-11-20 18:15:15.369 +05:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5157/api/News/019a91d3-ebea-7e45-bc3c-eeb2a22880df/likes - 200 null application/json; charset=utf-8 276.4192ms
+2025-11-20 18:15:24.888 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News - null null
+2025-11-20 18:15:24.915 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 18:15:24.936 +05:00 [INF] Route matched with {action = "GetAllNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.News.GetNewsDto]]] GetAllNewsAsync(Domain.Filters.NewsFilter) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:15:24.973 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get all the news
+2025-11-20 18:15:24.989 +05:00 [INF] Redis: Data retrieved from cache key: News
+2025-11-20 18:15:25.022 +05:00 [INF] Found 4 elements
+2025-11-20 18:15:25.032 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.News.GetNewsDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:15:25.035 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp) in 64.2845ms
+2025-11-20 18:15:25.038 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 18:15:25.045 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News - 200 null application/json; charset=utf-8 156.7318ms
+2025-11-20 18:15:38.320 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:15:38.331 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:15:38.334 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:15:38.398 +05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:15:38.436 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:15:38.457 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Likes" ("Id", "CommentId", "NewsId", "TargetId", "Type", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-20 18:15:38.462 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:15:38.465 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 104.8037ms
+2025-11-20 18:15:38.467 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:15:38.469 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 149.8504ms
+2025-11-20 18:15:41.479 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:15:41.547 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:15:41.583 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:15:41.599 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:15:41.610 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:15:41.613 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:15:41.615 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 22.7647ms
+2025-11-20 18:15:41.618 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:15:41.624 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 145.7248ms
+2025-11-20 18:16:11.606 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News/019a91d3-ebea-7e45-bc3c-eeb2a22880df/likes - null null
+2025-11-20 18:16:11.617 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllLikesAsync (WebApp)'
+2025-11-20 18:16:11.711 +05:00 [INF] Route matched with {action = "GetAllLikes", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.Collections.Generic.List`1[Domain.DTOs.Like.GetLikeDto]]] GetAllLikesAsync(System.Guid) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:16:11.742 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__targetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__targetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:16:11.751 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.Collections.Generic.List`1[[Domain.DTOs.Like.GetLikeDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:16:11.756 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllLikesAsync (WebApp) in 29.0917ms
+2025-11-20 18:16:11.759 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllLikesAsync (WebApp)'
+2025-11-20 18:16:11.761 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News/019a91d3-ebea-7e45-bc3c-eeb2a22880df/likes - 200 null application/json; charset=utf-8 155.5813ms
+2025-11-20 18:17:44.965 +05:00 [INF] Server desktop-qtpfn7c:3256:327604b3 caught stopping signal...
+2025-11-20 18:17:45.094 +05:00 [INF] Application is shutting down...
+2025-11-20 18:17:45.119 +05:00 [INF] Server desktop-qtpfn7c:3256:327604b3 All dispatchers stopped
+2025-11-20 18:17:45.129 +05:00 [INF] Server desktop-qtpfn7c:3256:327604b3 successfully reported itself as stopped in 4,3582 ms
+2025-11-20 18:17:45.133 +05:00 [INF] Server desktop-qtpfn7c:3256:327604b3 has been stopped in total 156,7542 ms
+2025-11-20 18:21:51.215 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 18:21:52.927 +05:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:21:53.460 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 18:21:53.485 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 18:21:53.493 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:21:53.507 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 18:21:53.846 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 18:21:54.023 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 18:21:54.119 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 18:21:54.145 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 18:21:54.664 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 18:21:54.678 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 18:21:54.682 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 18:21:54.685 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 18:21:54.687 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 18:21:54.688 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 18:21:54.690 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 18:21:54.712 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 18:21:54.717 +05:00 [INF] Hosting environment: Development
+2025-11-20 18:21:54.723 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 18:21:54.755 +05:00 [INF] Server desktop-qtpfn7c:11552:ee1aba1b successfully announced in 34,1204 ms
+2025-11-20 18:21:54.760 +05:00 [INF] Server desktop-qtpfn7c:11552:ee1aba1b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 18:21:55.112 +05:00 [INF] Server desktop-qtpfn7c:11552:ee1aba1b all the dispatchers started
+2025-11-20 18:22:23.669 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Video - null null
+2025-11-20 18:22:24.016 +05:00 [INF] Executing endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-20 18:22:24.068 +05:00 [INF] Route matched with {action = "GetAllVideos", controller = "Video"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.Video.GetVideoDto]]] GetAllVideosAsync(Domain.Filters.VideoFilter) on controller WebApp.Controllers.VideoController (WebApp).
+2025-11-20 18:22:24.305 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get 10 video
+2025-11-20 18:22:24.580 +05:00 [WRN] Redis: There is no data in the cache for this key: Videos
+2025-11-20 18:22:24.692 +05:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AuthorId", v."CreatedAt", v."Description", v."IsDeleted", v."Title", v."UpdatedAt", v."VideoPath"
+FROM "Videos" AS v
+WHERE NOT (v."IsDeleted")
+2025-11-20 18:22:24.856 +05:00 [INF] Redis : Added new data to cache by key: Videos, expiration time before : "2025-11-20T18:27:24.7613422+05:00"
+2025-11-20 18:22:24.908 +05:00 [INF] Found 1 elements
+2025-11-20 18:22:24.927 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.Video.GetVideoDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:22:24.974 +05:00 [INF] Executed action WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp) in 887.5726ms
+2025-11-20 18:22:24.986 +05:00 [INF] Executed endpoint 'WebApp.Controllers.VideoController.GetAllVideosAsync (WebApp)'
+2025-11-20 18:22:25.022 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Video - 200 null application/json; charset=utf-8 1355.2803ms
+2025-11-20 18:22:39.832 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News - null null
+2025-11-20 18:22:39.858 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 18:22:39.880 +05:00 [INF] Route matched with {action = "GetAllNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.News.GetNewsDto]]] GetAllNewsAsync(Domain.Filters.NewsFilter) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:22:39.915 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get all the news
+2025-11-20 18:22:39.919 +05:00 [WRN] Redis: There is no data in the cache for this key: News
+2025-11-20 18:22:40.099 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE NOT (n."IsDeleted")
+2025-11-20 18:22:40.281 +05:00 [INF] Redis : Added new data to cache by key: News, expiration time before : "2025-11-20T18:27:40.2574930+05:00"
+2025-11-20 18:22:40.304 +05:00 [INF] Found 4 elements
+2025-11-20 18:22:40.310 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.News.GetNewsDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:22:40.327 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp) in 442.5652ms
+2025-11-20 18:22:40.331 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 18:22:40.337 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News - 200 null application/json; charset=utf-8 504.0378ms
+2025-11-20 18:23:09.104 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:23:09.128 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:23:09.139 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:23:09.462 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:23:09.538 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:23:09.841 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Likes" ("Id", "CommentId", "NewsId", "TargetId", "Type", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-20 18:23:09.874 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:23:09.880 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 737.9706ms
+2025-11-20 18:23:09.890 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:23:09.893 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 788.3485ms
+2025-11-20 18:23:35.091 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:23:35.109 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:23:35.114 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:23:35.225 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:23:35.257 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:23:35.299 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Likes" ("Id", "CommentId", "NewsId", "TargetId", "Type", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-20 18:23:35.305 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:23:35.308 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 186.511ms
+2025-11-20 18:23:35.313 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:23:35.318 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 226.9774ms
+2025-11-20 18:24:20.399 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Users - null null
+2025-11-20 18:24:20.463 +05:00 [INF] Executing endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-20 18:24:20.529 +05:00 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.User.GetUserDto]]] GetAllUsersAsync(Domain.Filters.UserFilter) on controller WebApp.Controllers.UsersController (WebApp).
+2025-11-20 18:24:20.554 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get 10 users
+2025-11-20 18:24:20.557 +05:00 [WRN] Redis: There is no data in the cache for this key: Users
+2025-11-20 18:24:20.596 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE NOT (a."IsDeleted")
+2025-11-20 18:24:20.639 +05:00 [INF] Redis : Added new data to cache by key: Users, expiration time before : "2025-11-20T18:29:20.6006912+05:00"
+2025-11-20 18:24:20.742 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:24:20.763 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:24:20.778 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:24:20.794 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:24:20.799 +05:00 [INF] Found 4 users
+2025-11-20 18:24:20.804 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.User.GetUserDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:24:20.816 +05:00 [INF] Executed action WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp) in 282.3245ms
+2025-11-20 18:24:20.828 +05:00 [INF] Executed endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-20 18:24:20.830 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Users - 200 null application/json; charset=utf-8 430.633ms
+2025-11-20 18:24:45.629 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 60
+2025-11-20 18:24:45.638 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:24:45.650 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-20 18:24:45.705 +05:00 [INF] Trying to login user dovud2211
+2025-11-20 18:24:45.783 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-20 18:24:46.057 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:24:46.086 +05:00 [INF] User dovud2211 logged in
+2025-11-20 18:24:46.090 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:24:46.095 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 437.3668ms
+2025-11-20 18:24:46.099 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:24:46.104 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 474.3976ms
+2025-11-20 18:25:19.370 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 60
+2025-11-20 18:25:19.384 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:25:19.387 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-20 18:25:19.445 +05:00 [INF] Trying to login user dovud1919
+2025-11-20 18:25:19.479 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Email" = @__loginDto_EmailOrNickName_0 OR a."Nickname" = @__loginDto_EmailOrNickName_0_1
+LIMIT 1
+2025-11-20 18:25:19.767 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:25:19.776 +05:00 [INF] User dovud1919 logged in
+2025-11-20 18:25:19.780 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:25:19.782 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 343.9504ms
+2025-11-20 18:25:19.786 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:25:19.789 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 418.7586ms
+2025-11-20 18:25:38.925 +05:00 [INF] Server desktop-qtpfn7c:11552:ee1aba1b caught stopping signal...
+2025-11-20 18:25:38.929 +05:00 [INF] Application is shutting down...
+2025-11-20 18:25:38.938 +05:00 [INF] Server desktop-qtpfn7c:11552:ee1aba1b All dispatchers stopped
+2025-11-20 18:25:38.956 +05:00 [INF] Server desktop-qtpfn7c:11552:ee1aba1b successfully reported itself as stopped in 11,365 ms
+2025-11-20 18:25:38.958 +05:00 [INF] Server desktop-qtpfn7c:11552:ee1aba1b has been stopped in total 28,9235 ms
+2025-11-20 18:27:38.322 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 18:27:40.030 +05:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:27:40.615 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 18:27:40.646 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 18:27:40.655 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:27:40.670 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 18:27:41.086 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 18:27:41.268 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 18:27:41.360 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 18:27:41.385 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 18:27:41.846 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 18:27:41.854 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 18:27:41.857 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 18:27:41.858 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 18:27:41.860 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 18:27:41.861 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 18:27:41.863 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 18:27:41.877 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 18:27:41.880 +05:00 [INF] Hosting environment: Development
+2025-11-20 18:27:41.881 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 18:27:41.941 +05:00 [INF] Server desktop-qtpfn7c:8780:987bd6bc successfully announced in 56,2327 ms
+2025-11-20 18:27:41.950 +05:00 [INF] Server desktop-qtpfn7c:8780:987bd6bc is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 18:27:42.321 +05:00 [INF] Server desktop-qtpfn7c:8780:987bd6bc all the dispatchers started
+2025-11-20 18:27:48.162 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 60
+2025-11-20 18:27:48.313 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:27:48.359 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-20 18:27:48.619 +05:00 [INF] Trying to login user dovud1919
+2025-11-20 18:27:48.755 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE (a."Email" = @__loginDto_EmailOrNickName_0 AND NOT (a."IsDeleted")) OR (a."Nickname" = @__loginDto_EmailOrNickName_0_1 AND NOT (a."IsDeleted"))
+LIMIT 1
+2025-11-20 18:27:49.000 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:27:49.040 +05:00 [INF] User dovud1919 logged in
+2025-11-20 18:27:49.056 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:27:49.080 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 705.9301ms
+2025-11-20 18:27:49.086 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:27:49.102 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 941.1786ms
+2025-11-20 18:28:00.188 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 60
+2025-11-20 18:28:00.239 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:28:00.253 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-20 18:28:00.289 +05:00 [INF] Trying to login user dovud2211
+2025-11-20 18:28:00.488 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE (a."Email" = @__loginDto_EmailOrNickName_0 AND NOT (a."IsDeleted")) OR (a."Nickname" = @__loginDto_EmailOrNickName_0_1 AND NOT (a."IsDeleted"))
+LIMIT 1
+2025-11-20 18:28:00.502 +05:00 [WRN] Not found the user dovud2211
+2025-11-20 18:28:00.506 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:28:00.520 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 253.8082ms
+2025-11-20 18:28:00.523 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:28:00.539 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 348.6686ms
+2025-11-20 18:28:50.741 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 60
+2025-11-20 18:28:50.761 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:28:50.777 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-20 18:28:50.842 +05:00 [INF] Trying to login user dovud1919
+2025-11-20 18:28:50.863 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE (a."Email" = @__loginDto_EmailOrNickName_0 AND NOT (a."IsDeleted")) OR (a."Nickname" = @__loginDto_EmailOrNickName_0_1 AND NOT (a."IsDeleted"))
+LIMIT 1
+2025-11-20 18:28:51.159 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-20 18:28:51.168 +05:00 [INF] User dovud1919 logged in
+2025-11-20 18:28:51.171 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:28:51.175 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 382.3358ms
+2025-11-20 18:28:51.178 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-20 18:28:51.185 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 444.2471ms
+2025-11-20 18:29:19.738 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/News - null null
+2025-11-20 18:29:19.856 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 18:29:19.887 +05:00 [INF] Route matched with {action = "GetAllNews", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.News.GetNewsDto]]] GetAllNewsAsync(Domain.Filters.NewsFilter) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:29:19.920 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get all the news
+2025-11-20 18:29:20.206 +05:00 [WRN] Redis: There is no data in the cache for this key: News
+2025-11-20 18:29:20.245 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+FROM "News" AS n
+WHERE NOT (n."IsDeleted")
+2025-11-20 18:29:20.439 +05:00 [INF] Redis : Added new data to cache by key: News, expiration time before : "2025-11-20T18:34:20.3426628+05:00"
+2025-11-20 18:29:20.482 +05:00 [INF] Found 4 elements
+2025-11-20 18:29:20.486 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.News.GetNewsDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:29:20.503 +05:00 [INF] Executed action WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp) in 611.2699ms
+2025-11-20 18:29:20.506 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.GetAllNewsAsync (WebApp)'
+2025-11-20 18:29:20.513 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/News - 200 null application/json; charset=utf-8 775.2515ms
+2025-11-20 18:29:34.440 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:29:34.502 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:29:34.543 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:29:34.777 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:29:34.918 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:29:35.213 +05:00 [INF] Executed DbCommand (26ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Likes" ("Id", "CommentId", "NewsId", "TargetId", "Type", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-20 18:29:35.248 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:29:35.253 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 682.3482ms
+2025-11-20 18:29:35.260 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:29:35.263 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 822.5177ms
+2025-11-20 18:29:51.963 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:29:52.083 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:29:52.095 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:29:52.124 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:29:52.132 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:29:52.156 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Likes" ("Id", "CommentId", "NewsId", "TargetId", "Type", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-20 18:29:52.164 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:29:52.167 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 65.6192ms
+2025-11-20 18:29:52.176 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:29:52.178 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 215.3789ms
+2025-11-20 18:30:06.486 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:30:06.555 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:30:06.560 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:30:06.595 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:30:06.609 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:30:06.639 +05:00 [INF] Executed DbCommand (25ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Likes" ("Id", "CommentId", "NewsId", "TargetId", "Type", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-20 18:30:06.642 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:30:06.644 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 64.7467ms
+2025-11-20 18:30:06.647 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:30:06.649 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 162.9232ms
+2025-11-20 18:30:14.779 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:30:14.791 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:30:14.824 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:30:14.876 +05:00 [INF] Executed DbCommand (27ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:30:14.893 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:30:14.897 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 52.6941ms
+2025-11-20 18:30:14.906 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:30:14.910 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 131.1706ms
+2025-11-20 18:30:29.421 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - application/json 69
+2025-11-20 18:30:29.434 +05:00 [INF] Executing endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:30:29.472 +05:00 [INF] Route matched with {action = "AddLike", controller = "News"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] AddLikeAsync(Domain.DTOs.Like.AddLikeDto) on controller WebApp.Controllers.NewsController (WebApp).
+2025-11-20 18:30:29.500 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[@__8__locals1_dto_TargetId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT n0."Id", n0."AuthorId", n0."Category", n0."Content", n0."CreatedAt", n0."IsDeleted", n0."Tags", n0."Title", n0."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM (
+    SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt"
+    FROM "News" AS n
+    WHERE n."Id" = @__8__locals1_dto_TargetId_0 AND NOT (n."IsDeleted")
+    LIMIT 1
+) AS n0
+LEFT JOIN "Likes" AS l ON n0."Id" = l."NewsId"
+ORDER BY n0."Id"
+2025-11-20 18:30:29.523 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?', @__8__locals1_dto_TargetId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Likes" AS l
+    WHERE l."UserId" = @__userId_0 AND l."TargetId" = @__8__locals1_dto_TargetId_1)
+2025-11-20 18:30:29.538 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = Guid), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Likes" ("Id", "CommentId", "NewsId", "TargetId", "Type", "UserId", "VideoId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-20 18:30:29.542 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-20 18:30:29.544 +05:00 [INF] Executed action WebApp.Controllers.NewsController.AddLikeAsync (WebApp) in 66.4389ms
+2025-11-20 18:30:29.557 +05:00 [INF] Executed endpoint 'WebApp.Controllers.NewsController.AddLikeAsync (WebApp)'
+2025-11-20 18:30:29.558 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/News/likes/add-like - 200 null application/json; charset=utf-8 137.4971ms
+2025-11-20 18:30:35.516 +05:00 [INF] Server desktop-qtpfn7c:8780:987bd6bc caught stopping signal...
+2025-11-20 18:30:35.526 +05:00 [INF] Application is shutting down...
+2025-11-20 18:30:35.535 +05:00 [INF] Server desktop-qtpfn7c:8780:987bd6bc All dispatchers stopped
+2025-11-20 18:30:35.568 +05:00 [INF] Server desktop-qtpfn7c:8780:987bd6bc successfully reported itself as stopped in 20,5395 ms
+2025-11-20 18:30:35.570 +05:00 [INF] Server desktop-qtpfn7c:8780:987bd6bc has been stopped in total 43,2284 ms
+2025-11-20 18:31:09.146 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 18:31:10.726 +05:00 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:31:11.442 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 18:31:11.470 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 18:31:11.484 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:31:11.497 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 18:31:11.856 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 18:31:12.053 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 18:31:12.193 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 18:31:12.222 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 18:31:12.748 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 18:31:12.758 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 18:31:12.761 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 18:31:12.763 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 18:31:12.765 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 18:31:12.767 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 18:31:12.768 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 18:31:12.795 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 18:31:12.819 +05:00 [INF] Hosting environment: Development
+2025-11-20 18:31:12.831 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 18:31:12.850 +05:00 [INF] Server desktop-qtpfn7c:708:a2a63e86 successfully announced in 47,2033 ms
+2025-11-20 18:31:12.856 +05:00 [INF] Server desktop-qtpfn7c:708:a2a63e86 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 18:31:13.272 +05:00 [INF] Server desktop-qtpfn7c:708:a2a63e86 all the dispatchers started
+2025-11-20 18:32:13.584 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:32:13.5834738Z"
+2025-11-20 18:32:13.759 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:32:14.050 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-20 18:32:14.070 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:33:13.720 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:33:13.7204454Z"
+2025-11-20 18:33:13.809 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:33:13.819 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-20 18:33:13.846 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:34:13.836 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:34:13.8361013Z"
+2025-11-20 18:34:13.846 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:34:13.870 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-20 18:34:13.873 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:35:13.951 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:35:13.9518469Z"
+2025-11-20 18:35:13.960 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:35:13.967 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-20 18:35:13.972 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:35:32.641 +05:00 [INF] Server desktop-qtpfn7c:708:a2a63e86 caught stopping signal...
+2025-11-20 18:35:32.647 +05:00 [INF] Application is shutting down...
+2025-11-20 18:35:32.654 +05:00 [INF] Server desktop-qtpfn7c:708:a2a63e86 All dispatchers stopped
+2025-11-20 18:35:32.660 +05:00 [INF] Server desktop-qtpfn7c:708:a2a63e86 successfully reported itself as stopped in 2,8882 ms
+2025-11-20 18:35:32.662 +05:00 [INF] Server desktop-qtpfn7c:708:a2a63e86 has been stopped in total 14,7081 ms
+2025-11-20 18:42:25.942 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 18:42:27.609 +05:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:42:28.159 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 18:42:28.190 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 18:42:28.199 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:42:28.212 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 18:42:28.574 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 18:42:28.745 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 18:42:28.831 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 18:42:28.857 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 18:42:29.284 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 18:42:29.291 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 18:42:29.293 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 18:42:29.294 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 18:42:29.296 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 18:42:29.297 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 18:42:29.298 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 18:42:29.318 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 18:42:29.319 +05:00 [INF] Hosting environment: Development
+2025-11-20 18:42:29.321 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 18:42:29.345 +05:00 [INF] Server desktop-qtpfn7c:6664:d90d6204 successfully announced in 20,99 ms
+2025-11-20 18:42:29.350 +05:00 [INF] Server desktop-qtpfn7c:6664:d90d6204 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 18:42:29.941 +05:00 [INF] Server desktop-qtpfn7c:6664:d90d6204 all the dispatchers started
+2025-11-20 18:42:30.161 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:42:30.1606854Z"
+2025-11-20 18:42:30.208 +05:00 [ERR] Failed executing DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM NewsStats
+2025-11-20 18:42:30.240 +05:00 [WRN] Failed to process the job '6': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:19.
+Npgsql.PostgresException (0x80004005): 42P01: отношение "newsstats" не существует
+
+POSITION: 13
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteNonQuery(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlRawAsync(DatabaseFacade databaseFacade, String sql, IEnumerable`1 parameters, CancellationToken cancellationToken)
+   at Infrastructure.BackgroundTasks.CalculateNewsLikesTask.CalculateNewsLikes() in D:\.NET projects\MixTj\Infrastructure\BackgroundTasks\CalculateNewsLikesTask.cs:line 18
+   at Infrastructure.BackgroundTasks.CalculateNewsLikesTask.CalculateNewsLikes() in D:\.NET projects\MixTj\Infrastructure\BackgroundTasks\CalculateNewsLikesTask.cs:line 36
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Exception data:
+    Severity: ОШИБКА
+    SqlState: 42P01
+    MessageText: отношение "newsstats" не существует
+    Position: 13
+    File: parse_relation.c
+    Line: 1469
+    Routine: parserOpenTable
+2025-11-20 18:42:35.466 +05:00 [INF] Server desktop-qtpfn7c:6664:d90d6204 caught stopping signal...
+2025-11-20 18:42:35.472 +05:00 [INF] Application is shutting down...
+2025-11-20 18:42:35.476 +05:00 [INF] Server desktop-qtpfn7c:6664:d90d6204 All dispatchers stopped
+2025-11-20 18:42:35.488 +05:00 [INF] Server desktop-qtpfn7c:6664:d90d6204 successfully reported itself as stopped in 8,1226 ms
+2025-11-20 18:42:35.490 +05:00 [INF] Server desktop-qtpfn7c:6664:d90d6204 has been stopped in total 18,6747 ms
+2025-11-20 18:43:44.360 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 18:43:45.978 +05:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:43:46.698 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 18:43:46.733 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 18:43:46.743 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:43:46.772 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 18:43:47.172 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 18:43:47.389 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 18:43:47.496 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 18:43:47.529 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 18:43:48.006 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 18:43:48.018 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 18:43:48.020 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 18:43:48.022 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 18:43:48.025 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 18:43:48.026 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 18:43:48.027 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 18:43:48.053 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 18:43:48.060 +05:00 [INF] Hosting environment: Development
+2025-11-20 18:43:48.062 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 18:43:48.087 +05:00 [INF] Server desktop-qtpfn7c:12364:ff18c562 successfully announced in 31,2587 ms
+2025-11-20 18:43:48.094 +05:00 [INF] Server desktop-qtpfn7c:12364:ff18c562 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 18:43:48.443 +05:00 [INF] Server desktop-qtpfn7c:12364:ff18c562 all the dispatchers started
+2025-11-20 18:43:48.632 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:43:48.6311969Z"
+2025-11-20 18:43:48.632 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:43:48.6312053Z"
+2025-11-20 18:43:48.687 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "NewsStats"
+2025-11-20 18:43:48.687 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "NewsStats"
+2025-11-20 18:43:48.692 +05:00 [INF] Deleted old news stats
+2025-11-20 18:43:48.693 +05:00 [INF] Deleted old news stats
+2025-11-20 18:43:48.856 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:43:48.856 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:43:49.165 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-20 18:43:49.165 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-20 18:43:49.190 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:43:49.190 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:44:03.656 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:44:03.6561583Z"
+2025-11-20 18:44:03.762 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "NewsStats"
+2025-11-20 18:44:03.766 +05:00 [INF] Deleted old news stats
+2025-11-20 18:44:03.771 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:44:03.780 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-20 18:44:03.787 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:44:25.647 +05:00 [INF] Server desktop-qtpfn7c:12364:ff18c562 caught stopping signal...
+2025-11-20 18:44:25.650 +05:00 [INF] Application is shutting down...
+2025-11-20 18:44:25.655 +05:00 [INF] Server desktop-qtpfn7c:12364:ff18c562 All dispatchers stopped
+2025-11-20 18:44:25.671 +05:00 [INF] Server desktop-qtpfn7c:12364:ff18c562 successfully reported itself as stopped in 9,866 ms
+2025-11-20 18:44:25.672 +05:00 [INF] Server desktop-qtpfn7c:12364:ff18c562 has been stopped in total 22,5782 ms
+2025-11-20 18:47:37.230 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-20 18:47:38.864 +05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:47:39.420 +05:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-20 18:47:39.447 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-20 18:47:39.452 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-20 18:47:39.463 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-20 18:47:39.795 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-20 18:47:39.965 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-20 18:47:40.053 +05:00 [INF] Start installing Hangfire SQL objects...
+2025-11-20 18:47:40.078 +05:00 [INF] Hangfire SQL objects installed.
+2025-11-20 18:47:40.502 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-20 18:47:40.509 +05:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: MixTjDb, Schema: hangfire'
+2025-11-20 18:47:40.511 +05:00 [INF] Using the following options for PostgreSQL job storage:
+2025-11-20 18:47:40.513 +05:00 [INF]     Queue poll interval: 00:00:15.
+2025-11-20 18:47:40.515 +05:00 [INF]     Invisibility timeout: 00:30:00.
+2025-11-20 18:47:40.516 +05:00 [INF]     Use sliding invisibility timeout: False.
+2025-11-20 18:47:40.518 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-20 18:47:40.539 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-20 18:47:40.541 +05:00 [INF] Hosting environment: Development
+2025-11-20 18:47:40.545 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-20 18:47:40.582 +05:00 [INF] Server desktop-qtpfn7c:9732:c6e3a9e9 successfully announced in 34,7796 ms
+2025-11-20 18:47:40.586 +05:00 [INF] Server desktop-qtpfn7c:9732:c6e3a9e9 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-20 18:47:40.931 +05:00 [INF] Server desktop-qtpfn7c:9732:c6e3a9e9 all the dispatchers started
+2025-11-20 18:47:41.163 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:47:41.1622917Z"
+2025-11-20 18:47:41.216 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "NewsStats"
+2025-11-20 18:47:41.220 +05:00 [INF] Deleted old news stats
+2025-11-20 18:47:41.370 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:47:41.672 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-20 18:47:41.703 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:48:11.222 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-20T13:48:11.2223346Z"
+2025-11-20 18:48:11.338 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "NewsStats"
+2025-11-20 18:48:11.345 +05:00 [INF] Deleted old news stats
+2025-11-20 18:48:11.373 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-20 18:48:11.383 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-20 18:48:11.387 +05:00 [INF] Calculated likes for 4 news
+2025-11-20 18:48:13.719 +05:00 [INF] Server desktop-qtpfn7c:9732:c6e3a9e9 caught stopping signal...
+2025-11-20 18:48:13.722 +05:00 [INF] Application is shutting down...
+2025-11-20 18:48:13.727 +05:00 [INF] Server desktop-qtpfn7c:9732:c6e3a9e9 All dispatchers stopped
+2025-11-20 18:48:13.737 +05:00 [INF] Server desktop-qtpfn7c:9732:c6e3a9e9 successfully reported itself as stopped in 4,745 ms
+2025-11-20 18:48:13.738 +05:00 [INF] Server desktop-qtpfn7c:9732:c6e3a9e9 has been stopped in total 16,1163 ms
