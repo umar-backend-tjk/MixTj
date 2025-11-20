@@ -11,4 +11,5 @@ public class News : BaseEntity
     public string[]? Tags { get; set; } 
     
     public List<Comment> Comments = [];
+    public List<Like> Likes = [];
 }

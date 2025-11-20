@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Security.Claims;
 using AutoMapper;
+using Domain.DTOs.Like;
 using Domain.DTOs.Video;
 using Domain.Entities;
 using Domain.Filters;
@@ -16,10 +17,10 @@ using Serilog;
 namespace Infrastructure.Services;
 
 public class VideoService(
-    DataContext context, 
-    UserManager<AppUser?> userManager,
-    IMapper mapper, 
-    IHttpContextAccessor accessor, 
+    DataContext context,
+    UserManager<AppUser> userManager,
+    IMapper mapper,
+    IHttpContextAccessor accessor,
     ICacheService cacheService,
     IFileStorageService fileService) : IVideoService
 
@@ -77,7 +78,7 @@ public class VideoService(
                     Log.Error(deleteEx, "Rollback failed: could not delete file {path}", savedFilePath);
                 }
             }
-            
+
             return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected server error");
         }
     }
@@ -118,12 +119,14 @@ public class VideoService(
             var mappedList = mapper.Map<List<GetVideoDto>>(items);
 
             Log.Information("Found {count} elements", totalCount);
-            return new PaginationResponse<List<GetVideoDto>>(mappedList, totalCount, filter.PageNumber, filter.PageSize);
+            return new PaginationResponse<List<GetVideoDto>>(mappedList, totalCount, filter.PageNumber,
+                filter.PageSize);
         }
         catch (Exception ex)
         {
             Log.Error(ex, "Unexpected error in GetAllVideoAsync");
-            return new PaginationResponse<List<GetVideoDto>>(new List<GetVideoDto>(), 0, filter.PageNumber, filter.PageSize);
+            return new PaginationResponse<List<GetVideoDto>>(new List<GetVideoDto>(), 0, filter.PageNumber,
+                filter.PageSize);
         }
     }
 
@@ -155,110 +158,212 @@ public class VideoService(
     }
 
     public async Task<Response<string>> UpdateVideoAsync(UpdateVideoDto updateDto)
-{
-    try
     {
-        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-        Log.Information("User {userId} tries to update the video with id {videoId}", userId, updateDto.Id);
-
-        var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == updateDto.Id && !v.IsDeleted);
-        if (video is null)
+        try
         {
-            Log.Warning("Video with id {videoId} not found to update", updateDto.Id);
-            return new Response<string>(HttpStatusCode.NotFound, "Video not found");
-        }
-        
-        var currentUserRoles = await userManager.GetRolesAsync(await context.Users.FindAsync(userId)!);
-        var isOwner = video.AuthorId == userId;
-        var isAdmin = currentUserRoles.Contains("Admin");
-        var isModerator = currentUserRoles.Contains("Moderator");
+            var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        if (!isOwner && !(isAdmin || isModerator))
-        {
-            Log.Warning("User {userId} is not allowed to update video {videoId}", userId, updateDto.Id);
-            return new Response<string>(HttpStatusCode.Forbidden, "Forbidden");
-        }
+            Log.Information("User {userId} tries to update the video with id {videoId}", userId, updateDto.Id);
 
-        mapper.Map(updateDto, video);
-        video.UpdatedAt = DateTime.UtcNow;
-
-        var result = await context.SaveChangesAsync();
-        if (result == 0)
-        {
-            Log.Warning("Failed to update the video {title}", updateDto.Title);
-            return new Response<string>(HttpStatusCode.BadRequest, "Failed to update the video");
-        }
-
-        await cacheService.RemoveAsync(CacheKeys.Videos);
-
-        Log.Information("Updated video {title} successfully", updateDto.Title);
-        return new Response<string>(HttpStatusCode.OK, $"Updated video {updateDto.Title} successfully");
-    }
-    catch (Exception ex)
-    {
-        Log.Error(ex, "Unexpected error in UpdateVideoAsync");
-        return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected server error");
-    }
-}
-
-public async Task<Response<string>> DeleteVideoAsync(Guid videoId)
-{
-    try
-    {
-        var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-        Log.Information("User {userId} tries to delete the video with id {videoId}", userId, videoId);
-
-        var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId && !v.IsDeleted);
-        if (video is null)
-        {
-            Log.Warning("Video with id {videoId} not found", videoId);
-            return new Response<string>(HttpStatusCode.NotFound, "Video not found");
-        }
-        
-        var currentUserRoles = await userManager.GetRolesAsync(await context.Users.FindAsync(userId)!);
-        var isOwner = video.AuthorId == userId;
-        var isAdmin = currentUserRoles.Contains("Admin");
-        var isModerator = currentUserRoles.Contains("Moderator");
-
-        if (!isOwner && !(isAdmin || isModerator))
-        {
-            Log.Warning("User {userId} is not allowed to delete video {videoId}", userId, videoId);
-            return new Response<string>(HttpStatusCode.Forbidden, "Forbidden");
-        }
-
-        context.Videos.Remove(video);
-        var result = await context.SaveChangesAsync();
-        if (result == 0)
-        {
-            Log.Warning("Failed to delete the video with id {videoId}", videoId);
-            return new Response<string>(HttpStatusCode.BadRequest, "Failed to delete the video");
-        }
-
-        await cacheService.RemoveAsync(CacheKeys.Videos);
-        
-        if (!string.IsNullOrEmpty(video.VideoPath))
-        {
-            try
+            var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == updateDto.Id && !v.IsDeleted);
+            if (video is null)
             {
-                await fileService.DeleteFileAsync(video.VideoPath);
-                Log.Information("Deleted video file {videoPath}", video.VideoPath);
+                Log.Warning("Video with id {videoId} not found to update", updateDto.Id);
+                return new Response<string>(HttpStatusCode.NotFound, "Video not found");
             }
-            catch (Exception ex)
+
+            var currentUserRoles = await userManager.GetRolesAsync(await context.Users.FindAsync(userId)!);
+            var isOwner = video.AuthorId == userId;
+            var isAdmin = currentUserRoles.Contains("Admin");
+            var isModerator = currentUserRoles.Contains("Moderator");
+
+            if (!isOwner && !(isAdmin || isModerator))
             {
-                Log.Error(ex, "Failed to delete video file {videoPath}", video.VideoPath);
+                Log.Warning("User {userId} is not allowed to update video {videoId}", userId, updateDto.Id);
+                return new Response<string>(HttpStatusCode.Forbidden, "Forbidden");
             }
+
+            mapper.Map(updateDto, video);
+            video.UpdatedAt = DateTime.UtcNow;
+
+            var result = await context.SaveChangesAsync();
+            if (result == 0)
+            {
+                Log.Warning("Failed to update the video {title}", updateDto.Title);
+                return new Response<string>(HttpStatusCode.BadRequest, "Failed to update the video");
+            }
+
+            await cacheService.RemoveAsync(CacheKeys.Videos);
+
+            Log.Information("Updated video {title} successfully", updateDto.Title);
+            return new Response<string>(HttpStatusCode.OK, $"Updated video {updateDto.Title} successfully");
         }
-
-        Log.Information("Deleted video {videoId} successfully", videoId);
-        return new Response<string>(HttpStatusCode.OK, "Deleted video successfully");
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Unexpected error in UpdateVideoAsync");
+            return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected server error");
+        }
     }
-    catch (Exception ex)
+
+    public async Task<Response<string>> DeleteVideoAsync(Guid videoId)
     {
-        Log.Error(ex, "Unexpected error in DeleteVideoAsync");
-        return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected server error");
-    }
-}
+        try
+        {
+            var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
+            Log.Information("User {userId} tries to delete the video with id {videoId}", userId, videoId);
+
+            var video = await context.Videos.FirstOrDefaultAsync(v => v.Id == videoId && !v.IsDeleted);
+            if (video is null)
+            {
+                Log.Warning("Video with id {videoId} not found", videoId);
+                return new Response<string>(HttpStatusCode.NotFound, "Video not found");
+            }
+
+            var currentUserRoles = await userManager.GetRolesAsync(await context.Users.FindAsync(userId)!);
+            var isOwner = video.AuthorId == userId;
+            var isAdmin = currentUserRoles.Contains("Admin");
+            var isModerator = currentUserRoles.Contains("Moderator");
+
+            if (!isOwner && !(isAdmin || isModerator))
+            {
+                Log.Warning("User {userId} is not allowed to delete video {videoId}", userId, videoId);
+                return new Response<string>(HttpStatusCode.Forbidden, "Forbidden");
+            }
+
+            context.Videos.Remove(video);
+            var result = await context.SaveChangesAsync();
+            if (result == 0)
+            {
+                Log.Warning("Failed to delete the video with id {videoId}", videoId);
+                return new Response<string>(HttpStatusCode.BadRequest, "Failed to delete the video");
+            }
+
+            await cacheService.RemoveAsync(CacheKeys.Videos);
+
+            if (!string.IsNullOrEmpty(video.VideoPath))
+            {
+                try
+                {
+                    await fileService.DeleteFileAsync(video.VideoPath);
+                    Log.Information("Deleted video file {videoPath}", video.VideoPath);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Failed to delete video file {videoPath}", video.VideoPath);
+                }
+            }
+
+            Log.Information("Deleted video {videoId} successfully", videoId);
+            return new Response<string>(HttpStatusCode.OK, "Deleted video successfully");
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Unexpected error in DeleteVideoAsync");
+            return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected server error");
+        }
+    }
+
+    public async Task<Response<string>> AddLikeAsync(AddLikeDto dto)
+    {
+        try
+        {
+            var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var mapped = mapper.Map<Like>(dto);
+            mapped.UserId = userId!;
+
+            var existingVideo = await context.Videos
+                .Include(n => n.Likes)
+                .FirstOrDefaultAsync(n => n.Id == dto.TargetId && !n.IsDeleted);
+
+            if (existingVideo == null)
+            {
+                return new Response<string>(HttpStatusCode.BadRequest, "Video not found");
+            }
+
+            var exists = await context.Likes
+                .AnyAsync(l => l.UserId == userId && l.TargetId == dto.TargetId);
+
+            if (exists)
+                return new Response<string>(HttpStatusCode.BadRequest, "Already liked");
+
+            existingVideo.Likes.Add(mapped);
+            var result = await context.SaveChangesAsync();
+
+            if (result == 0)
+            {
+                return new Response<string>(HttpStatusCode.BadRequest, "Failed to add a like");
+            }
+
+            return new Response<string>(HttpStatusCode.OK, "Added a like");
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "Unexpected error in method VideoService.AddLikeAsync");
+            return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected error in method AddLikeAsync");
+        }
+    }
+
+    public async Task<Response<List<GetLikeDto>>> GetAllLikes(Guid targetId)
+    {
+        try
+        {
+            var existingVideo = await context.Videos
+                .Include(n => n.Likes)
+                .FirstOrDefaultAsync(n => n.Id == targetId && !n.IsDeleted);
+
+            if (existingVideo == null)
+            {
+                return new Response<List<GetLikeDto>>(HttpStatusCode.BadRequest, "Video not found");
+            }
+
+            var likes = existingVideo.Likes;
+
+            var mapped = mapper.Map<List<GetLikeDto>>(likes);
+
+            return new Response<List<GetLikeDto>>(mapped);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "Unexpected error in method VideoService.GetAllLikes");
+            return new Response<List<GetLikeDto>>(HttpStatusCode.InternalServerError,
+                "Unexpected error in method AddLikeAsync");
+        }
+    }
+
+    public async Task<Response<string>> RemoveLike(Guid targetId)
+    {
+        try
+        {
+            var userId = accessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var existingVideo = await context.Videos
+                .Include(n => n.Likes)
+                .FirstOrDefaultAsync(n => n.Id == targetId && !n.IsDeleted);
+
+            if (existingVideo == null)
+                return new Response<string>(HttpStatusCode.NotFound, "Video not found");
+
+            var like = existingVideo.Likes.FirstOrDefault(l => l.UserId == userId);
+
+            if (like == null)
+                return new Response<string>(HttpStatusCode.NotFound, "Like not found");
+
+            existingVideo.Likes.Remove(like);
+            context.Likes.Remove(like);
+
+            var result = await context.SaveChangesAsync();
+
+            if (result == 0)
+                return new Response<string>(HttpStatusCode.BadRequest, "Failed to remove like");
+
+            return new Response<string>(HttpStatusCode.OK, "Removed like");
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "Unexpected error in method VideoService.RemoveLike");
+            return new Response<string>(HttpStatusCode.InternalServerError, "Unexpected error in method AddLikeAsync");
+        }
+    }
 }

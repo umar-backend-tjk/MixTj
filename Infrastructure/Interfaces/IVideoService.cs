@@ -1,4 +1,5 @@
-﻿using Domain.DTOs.Video;
+﻿using Domain.DTOs.Like;
+using Domain.DTOs.Video;
 using Domain.Filters;
 using Infrastructure.Responses;
 
@@ -11,4 +12,7 @@ public interface IVideoService
     Task<Response<GetVideoDto>> GetVideoByIdAsync(Guid videoId);
     Task<Response<string>> UpdateVideoAsync(UpdateVideoDto updateDto);
     Task<Response<string>> DeleteVideoAsync(Guid videoId);
+    Task<Response<string>> AddLikeAsync(AddLikeDto dto);
+    Task<Response<List<GetLikeDto>>> GetAllLikes(Guid targetId);
+    Task<Response<string>> RemoveLike(Guid targetId);
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.DTOs.Comment;
+using Domain.DTOs.Like;
 using Infrastructure.Responses;
 
 namespace Infrastructure.Interfaces;
@@ -9,4 +10,7 @@ public interface ICommentService
     Task<Response<List<GetCommentDto>>> GetAllCommentAsync(Guid? videoId, Guid? newsId);
     Task<Response<string>> UpdateCommentAsync(UpdateCommentDto dto);
     Task<Response<string>> DeleteCommentAsync(Guid id);
+    Task<Response<string>> AddLikeAsync(AddLikeDto dto);
+    Task<Response<List<GetLikeDto>>> GetAllLikes(Guid targetId);
+    Task<Response<string>> RemoveLike(Guid targetId);
 }

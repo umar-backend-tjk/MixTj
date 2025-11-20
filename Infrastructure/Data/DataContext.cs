@@ -9,4 +9,14 @@ public class DataContext(DbContextOptions options) : IdentityDbContext<AppUser>(
     public DbSet<News> News { get; set; }
     public DbSet<Video> Videos { get; set; }
     public DbSet<Comment> Comments { get; set; }
+    public DbSet<Like> Likes { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<Like>()
+            .HasIndex(l => new { l.UserId, l.TargetId })
+            .IsUnique();
+        
+        base.OnModelCreating(builder);
+    }
 }

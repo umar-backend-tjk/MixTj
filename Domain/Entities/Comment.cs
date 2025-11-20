@@ -7,4 +7,6 @@ public class Comment : BaseEntity
     public required string UserId { get; set; }
     public Guid? NewsId { get; set; }
     public Guid? VideoId { get; set; }
+    
+    public List<Like> Likes = [];
 }

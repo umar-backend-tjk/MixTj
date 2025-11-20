@@ -8,4 +8,5 @@ public class Video : BaseEntity
     public required string AuthorId  { get; set; }
 
     public List<Comment> Comments = [];
+    public List<Like> Likes = [];
 }
