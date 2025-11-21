@@ -1,0 +1,277 @@
+2025-11-21 13:10:42.901 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-21 13:10:44.901 +05:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-21 13:10:45.540 +05:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-21 13:10:45.580 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-21 13:10:45.605 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-21 13:10:45.632 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-21 13:10:46.061 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-21 13:10:46.261 +05:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-21 13:14:19.179 +05:00 [INF] User profile is available. Using 'C:\Users\Umar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-21 13:14:20.884 +05:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-21 13:14:21.519 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-21 13:14:21.549 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-21 13:14:21.559 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-21 13:14:21.589 +05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-21 13:14:21.950 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+2025-11-21 13:14:22.123 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Nickname" = 'Admin'
+LIMIT 1
+2025-11-21 13:14:23.111 +05:00 [INF] Now listening on: http://localhost:5157
+2025-11-21 13:14:23.128 +05:00 [INF] Starting Hangfire Server using job storage: 'redis://localhost:6379/0'
+2025-11-21 13:14:23.135 +05:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-11-21 13:14:23.157 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-21 13:14:23.164 +05:00 [INF] Hosting environment: Development
+2025-11-21 13:14:23.169 +05:00 [INF] Content root path: D:\.NET projects\MixTj\WebApp
+2025-11-21 13:14:23.177 +05:00 [INF] Server desktop-qtpfn7c:6704:16354f4b successfully announced in 8,8374 ms
+2025-11-21 13:14:23.192 +05:00 [INF] Server desktop-qtpfn7c:6704:16354f4b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, FetchedJobsWatcher, ExpiredJobsWatcher, RedisSubscription, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-11-21 13:14:23.226 +05:00 [INF] Server desktop-qtpfn7c:6704:16354f4b all the dispatchers started
+2025-11-21 13:14:32.265 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/ - null null
+2025-11-21 13:14:33.028 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/ - 404 0 null 765.1677ms
+2025-11-21 13:14:34.022 +05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5157/, Response status code: 404
+2025-11-21 13:14:42.401 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/ - null null
+2025-11-21 13:14:42.408 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/ - 301 0 null 7.2381ms
+2025-11-21 13:14:42.492 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/index.css - null null
+2025-11-21 13:14:42.507 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/swagger-ui.css - null null
+2025-11-21 13:14:42.592 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/index.css - 499 202 text/css 100.0319ms
+2025-11-21 13:14:42.604 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/swagger-ui.css - 499 155175 text/css 96.9562ms
+2025-11-21 13:14:42.724 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - null null
+2025-11-21 13:14:42.749 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/favicon-32x32.png - 200 628 image/png 25.1528ms
+2025-11-21 13:14:42.804 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - null null
+2025-11-21 13:14:43.268 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 464.2642ms
+2025-11-21 13:15:03.033 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5157/api/Auth/login - application/json 58
+2025-11-21 13:15:03.072 +05:00 [INF] Executing endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-21 13:15:03.112 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.Response`1[System.String]] Login(Domain.DTOs.Auth.LoginDto) on controller WebApp.Controllers.AuthController (WebApp).
+2025-11-21 13:15:03.338 +05:00 [INF] Trying to login user Admin
+2025-11-21 13:15:03.464 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__loginDto_EmailOrNickName_0='?', @__loginDto_EmailOrNickName_0_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE (a."Email" = @__loginDto_EmailOrNickName_0 AND NOT (a."IsDeleted")) OR (a."Nickname" = @__loginDto_EmailOrNickName_0_1 AND NOT (a."IsDeleted"))
+LIMIT 1
+2025-11-21 13:15:03.719 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:15:03.767 +05:00 [INF] User Admin logged in
+2025-11-21 13:15:03.783 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.Response`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-21 13:15:03.804 +05:00 [INF] Executed action WebApp.Controllers.AuthController.Login (WebApp) in 683.1133ms
+2025-11-21 13:15:03.810 +05:00 [INF] Executed endpoint 'WebApp.Controllers.AuthController.Login (WebApp)'
+2025-11-21 13:15:03.831 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5157/api/Auth/login - 200 null application/json; charset=utf-8 797.2795ms
+2025-11-21 13:15:08.443 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-21T08:15:08.4435868Z"
+2025-11-21 13:15:08.537 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "NewsStats"
+2025-11-21 13:15:08.543 +05:00 [INF] Deleted old news stats
+2025-11-21 13:15:08.663 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-21 13:15:09.077 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-21 13:15:09.098 +05:00 [INF] Calculated likes for 4 news
+2025-11-21 13:15:23.688 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Users - null null
+2025-11-21 13:15:23.794 +05:00 [INF] Executing endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-21 13:15:23.803 +05:00 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.User.GetUserDto]]] GetAllUsersAsync(Domain.Filters.UserFilter) on controller WebApp.Controllers.UsersController (WebApp).
+2025-11-21 13:15:23.852 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get 10 users
+2025-11-21 13:15:23.885 +05:00 [WRN] Redis: There is no data in the cache for this key: Users
+2025-11-21 13:15:23.901 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE NOT (a."IsDeleted")
+2025-11-21 13:15:23.943 +05:00 [INF] Redis : Added new data to cache by key: Users, expiration time before : "2025-11-21T13:20:23.9086855+05:00"
+2025-11-21 13:15:23.990 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:15:23.996 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:15:24.000 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:15:24.008 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:15:24.011 +05:00 [INF] Found 4 users
+2025-11-21 13:15:24.014 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.User.GetUserDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-21 13:15:24.023 +05:00 [INF] Executed action WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp) in 215.9783ms
+2025-11-21 13:15:24.029 +05:00 [INF] Executed endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-21 13:15:24.031 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Users - 200 null application/json; charset=utf-8 342.4931ms
+2025-11-21 13:16:08.454 +05:00 [INF] Started background task: "Calculate News Likes". "2025-11-21T08:16:08.4544416Z"
+2025-11-21 13:16:08.509 +05:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "NewsStats"
+2025-11-21 13:16:08.515 +05:00 [INF] Deleted old news stats
+2025-11-21 13:16:08.520 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT n."Id", n."AuthorId", n."Category", n."Content", n."CreatedAt", n."IsDeleted", n."Tags", n."Title", n."UpdatedAt", l."Id", l."CommentId", l."NewsId", l."TargetId", l."Type", l."UserId", l."VideoId"
+FROM "News" AS n
+LEFT JOIN "Likes" AS l ON n."Id" = l."NewsId"
+WHERE NOT (n."IsDeleted")
+ORDER BY n."Id"
+2025-11-21 13:16:08.527 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Guid), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = Guid), @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32), @p19='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p0, @p1, @p2, @p3, @p4);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p5, @p6, @p7, @p8, @p9);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p10, @p11, @p12, @p13, @p14);
+INSERT INTO "NewsStats" ("Id", "LastCalculatedAt", "NewsId", "TotalDislikes", "TotalLikes")
+VALUES (@p15, @p16, @p17, @p18, @p19);
+2025-11-21 13:16:08.533 +05:00 [INF] Calculated likes for 4 news
+2025-11-21 13:16:12.541 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Users - null null
+2025-11-21 13:16:12.553 +05:00 [INF] Executing endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-21 13:16:12.556 +05:00 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.User.GetUserDto]]] GetAllUsersAsync(Domain.Filters.UserFilter) on controller WebApp.Controllers.UsersController (WebApp).
+2025-11-21 13:16:12.572 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get 10 users
+2025-11-21 13:16:12.580 +05:00 [INF] Redis: Data retrieved from cache key: Users
+2025-11-21 13:16:12.684 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-21 13:16:12.689 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:16:12.697 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-21 13:16:12.706 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:16:12.722 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-21 13:16:12.736 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:16:12.741 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-21 13:16:12.754 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:16:12.757 +05:00 [INF] Found 4 users
+2025-11-21 13:16:12.759 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.User.GetUserDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-21 13:16:12.768 +05:00 [INF] Executed action WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp) in 203.1978ms
+2025-11-21 13:16:12.773 +05:00 [INF] Executed endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-21 13:16:12.783 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Users - 200 null application/json; charset=utf-8 233.2619ms
+2025-11-21 13:16:23.839 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5157/api/Users - null null
+2025-11-21 13:16:23.848 +05:00 [INF] Executing endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-21 13:16:23.849 +05:00 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Infrastructure.Responses.PaginationResponse`1[System.Collections.Generic.List`1[Domain.DTOs.User.GetUserDto]]] GetAllUsersAsync(Domain.Filters.UserFilter) on controller WebApp.Controllers.UsersController (WebApp).
+2025-11-21 13:16:23.866 +05:00 [INF] User d03ead84-5121-466a-8dad-1acc67a19eaf tries to get 10 users
+2025-11-21 13:16:23.870 +05:00 [INF] Redis: Data retrieved from cache key: Users
+2025-11-21 13:16:23.876 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-21 13:16:23.881 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:16:23.887 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-21 13:16:23.894 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:16:23.898 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-21 13:16:23.903 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:16:23.917 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."About", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."IsDeleted", a."LockoutEnabled", a."LockoutEnd", a."Nickname", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UpdatedAt", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2025-11-21 13:16:23.930 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-11-21 13:16:23.937 +05:00 [INF] Found 4 users
+2025-11-21 13:16:23.940 +05:00 [INF] Executing ObjectResult, writing value of type 'Infrastructure.Responses.PaginationResponse`1[[System.Collections.Generic.List`1[[Domain.DTOs.User.GetUserDto, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-21 13:16:23.947 +05:00 [INF] Executed action WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp) in 96.5921ms
+2025-11-21 13:16:23.955 +05:00 [INF] Executed endpoint 'WebApp.Controllers.UsersController.GetAllUsersAsync (WebApp)'
+2025-11-21 13:16:23.964 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5157/api/Users - 200 null application/json; charset=utf-8 117.125ms
+2025-11-21 13:16:36.207 +05:00 [INF] Server desktop-qtpfn7c:6704:16354f4b caught stopping signal...
+2025-11-21 13:16:36.210 +05:00 [INF] Application is shutting down...
+2025-11-21 13:16:36.215 +05:00 [INF] Server desktop-qtpfn7c:6704:16354f4b All dispatchers stopped
+2025-11-21 13:16:36.225 +05:00 [INF] Server desktop-qtpfn7c:6704:16354f4b successfully reported itself as stopped in 3,8633 ms
+2025-11-21 13:16:36.226 +05:00 [INF] Server desktop-qtpfn7c:6704:16354f4b has been stopped in total 16,7485 ms

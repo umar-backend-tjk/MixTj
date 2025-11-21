@@ -1,18 +1,13 @@
-using System.Text;
-using Domain.Entities;
 using Hangfire;
 using Hangfire.PostgreSql;
+using Hangfire.Redis.StackExchange;
 using Infrastructure.BackgroundTasks;
-using Infrastructure.Caching;
 using Infrastructure.Data;
+using Infrastructure.ExtensionMethods;
 using Infrastructure.Interfaces;
 using Infrastructure.Profiles;
 using Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,15 +15,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
+//Serilog
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .WriteTo.Console()
     .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
-builder.Services.AddDbContext<DataContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+//DataContext
+builder.Services.RegisterDbContext(builder.Configuration);
 
+//Redis
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("RedisConnection");
@@ -37,82 +34,33 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
 builder.Services.AddHttpContextAccessor();
 
+//Hangfire
 builder.Services.AddHangfire(config =>
-    config.UsePostgreSqlStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
+    config.UseRedisStorage(builder.Configuration.GetConnectionString("RedisConnection")));
 builder.Services.AddHangfireServer();
 
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1",new OpenApiInfo());
-    
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Name = "Authorization",
-        Type = SecuritySchemeType.Http,
-        Scheme = "Bearer",
-        BearerFormat = "JWT",
-        In = ParameterLocation.Header,
-        Description = "JWT Authorization header using the Bearer scheme. Bearer {your token}"
-    });
-    
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme()
-            {
-                Reference = new OpenApiReference()
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            Array.Empty<string>()
-        }
-    });
-});
-builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
-    {
-        options.Password.RequireDigit = false;
-        options.Password.RequireLowercase = false;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireUppercase = false;
-        options.Password.RequiredLength = 4;
-    })
-    .AddEntityFrameworkStores<DataContext>()
-    .AddDefaultTokenProviders();
+//Swagger
+builder.Services.RegisterSwagger();
 
+//Identity
+builder.Services.RegisterIdentity();
+
+//AutoMapper
 builder.Services.AddAutoMapper(typeof(AppProfile));
 
-builder.Services.AddScoped<ICacheService, CacheService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<INewsService, NewsService>();
-builder.Services.AddScoped<IVideoService, VideoService>();
-builder.Services.AddScoped<ICommentService, CommentService>();
+//Services
+builder.Services.RegisterServices();
 
-builder.Services.AddScoped<IFileStorageService>(
-    sp => new FileStorageService(builder.Environment.ContentRootPath));
+//File
+builder.Services.AddScoped<IFileStorageService>(sp => 
+    new FileStorageService(builder.Environment.ContentRootPath));
 
+//Seeder
 builder.Services.AddScoped<Seeder>();
-builder.Services.AddAuthentication(config =>
-    {
-        config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters()
-        {
-            ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidateAudience = true,
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
-            ValidateIssuerSigningKey = true,
-        };
-    });
+
+//Authentication
+builder.Services.RegisterAuthentication(builder.Configuration);
+
 builder.Services.AddAuthorization();
 
 builder.Host.UseSerilog();
@@ -128,11 +76,11 @@ using (var scope = app.Services.CreateScope())
     await seed.SeedRoles();
     await seed.SeedAdmin();
     var recurringJobManager = serviceProvider.GetRequiredService<IRecurringJobManager>();
-    
+
     recurringJobManager.AddOrUpdate<CalculateNewsLikesTask>(
         "calculate-news-likes",
         service => service.CalculateNewsLikes(),
-        Cron.Minutely);
+        Cron.Hourly);
 }
 
 if (app.Environment.IsDevelopment())
